@@ -291,15 +291,6 @@
       max-width: 680px;
     }
 
-    .android-beta-actions {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
     .android-beta-action {
       display: flex;
       align-items: center;
@@ -323,25 +314,18 @@
       outline-offset: 2px;
     }
 
-    .android-beta-number {
-      display: grid;
-      flex: 0 0 36px;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--sage);
-      color: var(--olive);
+    .android-beta-store {
+      justify-content: center;
+      max-width: 340px;
+      margin: 0 auto;
+      font-size: 18px;
+      text-align: center;
     }
 
     .android-beta-note {
       margin: 14px 0 0;
       color: var(--olive-soft);
       font-size: 13px;
-    }
-
-    @media (max-width: 640px) {
-      .android-beta-actions { grid-template-columns: 1fr; }
     }
 
     .hero h1 {
@@ -1330,39 +1314,20 @@
 
   <section class="android-beta" aria-labelledby="androidBetaTitle">
     <div class="android-beta-inner">
-      <div class="android-beta-eyebrow">Web compressor retired</div>
+      <div class="android-beta-eyebrow">Now on Google Play</div>
       <h2 id="androidBetaTitle" tabindex="-1">Get the StatusDrop Android app</h2>
       <p class="android-beta-copy">
-        The StatusDrop web compressor has been retired. Server-side video processing
-        was expensive to operate, so StatusDrop now runs as an Android app that
-        prepares videos on your phone. This keeps StatusDrop free and sustainable.
-        Join the closed beta to keep using StatusDrop. Use the same Google account
-        in both steps; StatusDrop does not collect your email.
+        StatusDrop is now a free Android app that prepares HD Status videos on your
+        phone. The web compressor has been retired: server-side processing was
+        expensive to run, and preparing videos on your phone keeps StatusDrop free
+        and sustainable.
       </p>
-      <ol class="android-beta-actions" aria-label="Join the StatusDrop Android beta">
-        <li>
-          <a class="android-beta-action"
-             href="https://groups.google.com/g/statusdrop-android-testers"
-             target="_blank" rel="noopener">
-            <span class="android-beta-number" aria-hidden="true">1</span>
-            <span>Join the tester group</span>
-          </a>
-        </li>
-        <li>
-          <a class="android-beta-action"
-             href="https://play.google.com/apps/testing/com.wastatusvideo.statusdrop"
-             target="_blank" rel="noopener">
-            <span class="android-beta-number" aria-hidden="true">2</span>
-            <span>Become a tester &amp; install</span>
-          </a>
-        </li>
-      </ol>
-      <p class="android-beta-note">
-        <strong>Step 1 is required.</strong> You cannot become a tester or install
-        the app until you join the Google Group using the same Google account.
-        Complete Step 1 first, then click Step 2 to opt in and install StatusDrop
-        from Google Play.
-      </p>
+      <a class="android-beta-action android-beta-store"
+         href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop"
+         target="_blank" rel="noopener">
+        Get it on Google Play
+      </a>
+      <p class="android-beta-note">Free · No login · Android 10 or newer</p>
     </div>
   </section>
 
