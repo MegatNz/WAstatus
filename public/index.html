@@ -1249,11 +1249,17 @@
       try {
         var bar = document.getElementById('sdFeedbackBar');
         if (!bar) return;
-        if (localStorage.getItem('sdFeedbackDismissed') === '1') { bar.style.display = 'none'; return; }
+        // Dismissal lasts for this tab session only, so the banner shows again
+        // on the next visit. The old permanent flag in localStorage is removed
+        // so people who closed it before see it again too.
+        try { localStorage.removeItem('sdFeedbackDismissed'); } catch (e) {}
+        var dismissed = false;
+        try { dismissed = sessionStorage.getItem('sdFeedbackDismissed') === '1'; } catch (e) {}
+        if (dismissed) { bar.style.display = 'none'; return; }
         var btn = document.getElementById('sdFeedbackClose');
         if (btn) btn.addEventListener('click', function () {
           bar.style.display = 'none';
-          try { localStorage.setItem('sdFeedbackDismissed', '1'); } catch (e) {}
+          try { sessionStorage.setItem('sdFeedbackDismissed', '1'); } catch (e) {}
         });
       } catch (e) {}
     })();
