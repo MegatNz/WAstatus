@@ -10,7 +10,12 @@ baileys_auth/
 # ---- Runtime temp media (generated at request time) ----
 uploads/
 compressed/
-assets/
+# Root only: the server's temp folder. A bare "assets/" also hid the Android
+# app's own images (mobile/statusdrop_app/assets/), so the public app source
+# could not be built.
+/assets/
+# Generated Play Store artwork and raw screenshots (not needed to build the app)
+mobile/statusdrop_app/play/assets/
 
 # ---- FFmpeg binaries (provided by ffmpeg-static / ffprobe-static) ----
 ffmpeg*
