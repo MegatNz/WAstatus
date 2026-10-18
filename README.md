@@ -27,6 +27,20 @@ StatusDrop is a free Android app that compresses and splits your videos on the p
 
 </div>
 
+## Why StatusDrop?
+
+A sharp video from your phone often looks soft and blurry once it's on WhatsApp Status, because WhatsApp compresses it again when you post. Long videos are a second problem: Status only takes short clips under a size limit, so you end up trimming them into parts by hand.
+
+StatusDrop handles both:
+
+- **It prepares each video so WhatsApp has less reason to compress it again.** Clips are re-encoded to a profile that kept its quality in testing: 1080×1920 H.264 at about 30 fps (60 fps videos got re-encoded), under WhatsApp's roughly 16 MB limit.
+- **It splits long videos for you** into ready-to-post parts.
+- **It sends the clips to your own WhatsApp chat.** In testing, a clip received in a chat and then posted with the [steps below](#post-in-full-hd) stayed sharp, while the same file uploaded from the gallery or forwarded from another phone came out blurry.
+
+It's for anyone who posts videos to Status: people sharing with friends and family, creators, and small shops that use Status for updates.
+
+**Why an app?** StatusDrop started as a website that compressed videos on a server. That was expensive to run, so the work moved onto your phone. That keeps StatusDrop free, and your original videos never leave the phone.
+
 ## Features
 
 - **Compresses on your phone.** FFmpeg with x264 runs locally; your original videos are never uploaded.
