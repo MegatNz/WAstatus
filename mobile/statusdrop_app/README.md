@@ -1,6 +1,8 @@
-# StatusDrop Android beta
+# StatusDrop Android app
 
-StatusDrop is an Android-first beta that prepares WhatsApp Status videos on the phone instead of paying for server-side FFmpeg work. It has no account, login, analytics SDK, advertising SDK, or broad storage permission.
+StatusDrop prepares WhatsApp Status videos on the phone instead of paying for server-side FFmpeg work. It has no account, login, analytics SDK, advertising SDK, or broad storage permission.
+
+It's available on [Google Play](https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop). Each published version also has a [GitHub release](https://github.com/Shamanthnp1/WAstatus/releases) with its matching source.
 
 ## Implemented flow
 
@@ -14,14 +16,14 @@ StatusDrop is an Android-first beta that prepares WhatsApp Status videos on the 
 8. An accessible in-app 9-step guide shows how to download, resend, and forward the returned clip to Status in full HD.
 9. A three-dot About & support menu provides the published Instagram, email, Privacy Policy, and GPL source/license links without exposing a phone number.
 
-The production website continues to use its existing upload and server-compression routes. The mobile routes are separate under `/api/mobile/*`.
+The app uses the backend's `/api/mobile/*` routes. The old website compressor was retired in October 2026, so the app is now the only way to use StatusDrop.
 
 ## Limits and profiles
 
 | Limit/profile | Value |
 |---|---:|
 | Android version | Android 10 / API 29 or newer |
-| CPU architecture | ARM64 (`arm64-v8a`) beta |
+| CPU architecture | ARM64 (`arm64-v8a`) only |
 | Source selection | 3 videos, 300 MiB total |
 | Generated delivery | 20 clips maximum |
 | Accepted clip size | 15,800,000 bytes maximum |
@@ -78,7 +80,7 @@ Output:
 build\app\outputs\flutter-apk\app-arm64-v8a-debug.apk
 ```
 
-The beta is signed with Flutter/Android's **debug certificate**, not a production release key. It is installable for testing, but Android may show an unknown-source or Play Protect warning. A future production-signed build cannot upgrade this debug-signed package in place; uninstall the beta first.
+This local build is signed with Flutter/Android's **debug certificate**. Android may show an unknown-source or Play Protect warning, and it can't install over the Google Play version (the signatures differ); uninstall the Play version first. Release builds for Google Play follow [RELEASE.md](RELEASE.md).
 
 To point a build at another HTTPS backend:
 
@@ -89,21 +91,11 @@ flutter build apk --debug --target-platform android-arm64 --split-per-abi `
 
 Cleartext HTTP is disabled. A physical phone cannot use the development computer's `localhost` as its backend.
 
-## Backend deployment requirements
+## Backend
 
-Deploy the backend changes before distributing this APK. Existing production variables remain required:
+Backend settings, WhatsApp linking and deployment are in [SELF_HOSTING.md](../../SELF_HOSTING.md). Check `GET https://api.wastatusvideo.com/api/health` and confirm `baileys: "connected"` before an end-to-end test.
 
-- `R2_ENDPOINT`
-- `R2_ACCESS_KEY_ID`
-- `R2_SECRET_ACCESS_KEY`
-- `R2_BUCKET_NAME`
-- `R2_PUBLIC_URL`
-- `WHATSAPP_BUSINESS_NUMBER`
-- persistent `BAILEYS_AUTH_DIR`
-
-Check `GET https://api.wastatusvideo.com/api/health` and confirm `baileys: "connected"` before an end-to-end test.
-
-New mobile endpoints:
+Mobile endpoints:
 
 ```text
 POST /api/mobile/sessions
@@ -123,10 +115,14 @@ Upload capabilities are random bearer credentials. Do not log tokens, upload URL
 - The server receives only finished clips, validates them, and removes delivery objects after send or expiry.
 - `android:allowBackup="false"` prevents app-cache backup.
 
-## Validation status
+## Testing and releases
 
-Automated checks passed for Dart analysis, the Flutter widget smoke test, the ARM64 debug build, Node syntax, the mobile validation/lifecycle smoke check, and all existing 244 Node tests.
+Version 1.0.0 (version code 7) went through a 14-day Google Play closed test on testers' own phones before its production release in October 2026. Use [TESTING.md](TESTING.md) for device checks before each new version.
 
-A real Android device was not connected during implementation. FFmpeg runtime speed, picker-provider compatibility, upload behavior on mobile networks, TalkBack, WhatsApp launch, and live Baileys delivery must be completed using [TESTING.md](TESTING.md) before public distribution.
+To publish a new version:
+
+1. Bump `version:` in `pubspec.yaml` (for example `1.0.1+8`) and update `play/RELEASE_NOTES.txt`.
+2. Build, upload and roll out on Google Play using [RELEASE.md](RELEASE.md).
+3. Tag the commit with the version name and push the tag (`git tag v1.0.1 && git push origin v1.0.1`). The release workflow checks that the tag matches `pubspec.yaml` and publishes the GitHub release.
 
 Do not commit release keystores, passwords, Baileys credentials, user media, generated clips, or APK binaries.
