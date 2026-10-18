@@ -8,6 +8,18 @@ name: Build & deploy to Azure (GHCR)
 on:
   push:
     branches: [main]
+    # Every deploy restarts the server and takes WhatsApp offline for about
+    # 1–2 minutes, so skip pushes that only touch files the backend doesn't
+    # use: docs, the Android app, the Vercel website and the release workflow.
+    # A push that also changes anything else still deploys.
+    paths-ignore:
+      - '**/*.md'
+      - 'LICENSE'
+      - 'mobile/**'
+      - 'public/**'
+      - '.github/readme/**'
+      - '.github/scripts/release-notes.sh'
+      - '.github/workflows/release.yml'
   workflow_dispatch: {}
 
 env:
