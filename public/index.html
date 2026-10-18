@@ -328,6 +328,23 @@
       font-size: 13px;
     }
 
+    /* Secondary to the Google Play button: smaller, olive outline. */
+    .android-beta-support {
+      justify-content: center;
+      max-width: 340px;
+      min-height: 48px;
+      margin: 16px auto 0;
+      border-color: var(--olive);
+      color: var(--olive);
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .android-beta-support:hover,
+    .android-beta-support:focus-visible {
+      border-color: var(--orange-deep);
+    }
+
     .hero h1 {
       font-size: 48px;
       font-weight: 800;
@@ -1221,9 +1238,9 @@
   <a class="skip-link" href="#androidBetaTitle">Skip to the Android app</a>
   <div id="globalStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Feedback / support banner -->
+  <!-- Feedback banner (the donate link lives under the Google Play button) -->
   <div id="sdFeedbackBar" style="display:flex;align-items:center;justify-content:center;gap:8px;position:relative;background:linear-gradient(90deg,#515739,#C4381A);color:#FFEAD1;font-size:13px;line-height:1.45;padding:10px 38px 10px 16px;text-align:center;">
-    <span>👋 Facing an issue or have feedback? <a href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">DM me on Instagram</a> &nbsp;·&nbsp; Love StatusDrop? <a href="https://ko-fi.com/wastatus" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">Support the server ☕</a> &nbsp;·&nbsp; <a href="https://github.com/Shamanthnp1/WAstatus" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">⭐ Open source</a></span>
+    <span>👋 Facing an issue or have feedback? <a href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">DM me on Instagram</a> &nbsp;·&nbsp; <a href="https://github.com/Shamanthnp1/WAstatus" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">⭐ Open source</a></span>
     <button id="sdFeedbackClose" aria-label="Dismiss feedback banner" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:#FFEAD1;font-size:20px;cursor:pointer;line-height:1;padding:0 6px;">&times;</button>
   </div>
 
@@ -1273,10 +1290,10 @@
     })();
   </script>
 
-  <!-- Donation popup removed — donation now lives in the top feedback banner -->
+  <!-- Donation popup removed — the donate button now sits under the Google Play button -->
   <script>
     (function () {
-      // Legacy no-op: the donation popup was replaced by the top banner link.
+      // Legacy no-op: the donation popup was replaced by a button in the app section.
       window.__sdShowDonate = function () {};
     })();
   </script>
@@ -1328,6 +1345,11 @@
         Get it on Google Play
       </a>
       <p class="android-beta-note">Free · No login · Android 10 or newer</p>
+      <a class="android-beta-action android-beta-support"
+         href="https://ko-fi.com/wastatus"
+         target="_blank" rel="noopener">
+        Love StatusDrop? Support the server <span aria-hidden="true">☕</span>
+      </a>
     </div>
   </section>
 
