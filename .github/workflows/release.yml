@@ -1,0 +1,34 @@
+name: Release
+
+# Publishes a GitHub release when a version tag is pushed, for example:
+#   git tag v1.0.1 && git push origin v1.0.1
+# The tag must match the version in mobile/statusdrop_app/pubspec.yaml.
+# Release notes come from mobile/statusdrop_app/play/RELEASE_NOTES.txt, and
+# GitHub attaches the matching source code (needed for the GPL app) itself.
+# This workflow does not build or deploy anything.
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check the tag matches the app version and write release notes
+        run: bash .github/scripts/release-notes.sh "$GITHUB_REF_NAME" release-notes.md
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "$GITHUB_REF_NAME"
+          --title "StatusDrop $GITHUB_REF_NAME"
+          --notes-file release-notes.md
+          --verify-tag
