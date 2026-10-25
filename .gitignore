@@ -71,6 +71,8 @@ _*.ps1
 
 # Agent-generated review artifacts
 semantic-review/
+# Taste Skill working files (design direction, before/after screenshots)
+.taste-skill/
 
 # Private Android tutorial source artwork
 WhatsApp-Status-Guide-9-Images/
