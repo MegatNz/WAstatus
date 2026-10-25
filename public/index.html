@@ -4,19 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- ✅ PRIMARY TITLE — keyword rich -->
+  <!-- PRIMARY TITLE — keyword rich -->
   <title>WhatsApp Status Video Compressor - Upload HD & Long Videos Free</title>
 
-  <!-- ✅ Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/logo.png"/>
   <link rel="icon" href="/logo.png" sizes="32x32">
   <link rel="apple-touch-icon" href="/logo.png">
   <meta name="theme-color" content="#137A3E">
 
-  <!-- ✅ Verification -->
+  <!-- Verification -->
   <meta name="yandex-verification" content="18f62c2f8df9771d" />
 
-  <!-- ✅ PRIMARY SEO — exact search terms people type -->
+  <!-- PRIMARY SEO — exact search terms people type -->
   <meta name="description"
     content="Free WhatsApp Status video compressor. Upload HD videos up to 300MB, auto-split long videos into 29-second clips. No blur, no watermark, no login needed. Works worldwide!"/>
 
@@ -26,10 +26,10 @@
   <meta name="author" content="StatusDrop"/>
   <meta name="robots" content="index, follow"/>
 
-  <!-- ✅ Canonical -->
+  <!-- Canonical -->
   <link rel="canonical" href="https://www.wastatusvideo.com"/>
 
-  <!-- ✅ Open Graph — for WhatsApp/Facebook shares -->
+  <!-- Open Graph — for WhatsApp/Facebook shares -->
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="StatusDrop"/>
   <meta property="og:title" content="WhatsApp Status Video Compressor - HD Videos Free"/>
@@ -37,7 +37,7 @@
   <meta property="og:image" content="https://www.wastatusvideo.com/logo.png"/>
   <meta property="og:url" content="https://www.wastatusvideo.com"/>
 
-  <!-- ✅ Twitter Card -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="WhatsApp Status Video Compressor - Upload HD Videos Free"/>
   <meta name="twitter:description" content="Stop blurry WhatsApp Status! Compress & send HD videos free. Auto-splits long videos into 29s clips."/>
@@ -49,7 +49,7 @@
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9733435756082502"
     crossorigin="anonymous"></script>
 
-  <!-- ✅ Schema.org Structured Data — helps Google understand your site -->
+  <!-- Schema.org Structured Data — helps Google understand your site -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,7 +75,7 @@
   }
   </script>
 
-  <!-- ✅ FAQ Schema — gets you rich results in Google -->
+  <!-- FAQ Schema — gets you rich results in Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -117,7 +117,7 @@
   }
   </script>
 
-  <!-- ✅ GA — loaded off the critical path, but EARLY enough to count fast bounces.
+  <!-- GA — loaded off the critical path, but EARLY enough to count fast bounces.
        A fixed 3s delay used to drop every visitor who left in under 3 seconds,
        which undercounted real traffic. Now it loads on whichever comes first:
        the first user interaction, window load, or a short idle fallback. -->
@@ -167,1081 +167,470 @@
     })();
   </script>
 
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="/vendor/fonts/switzer/files/switzer-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/vendor/fonts/switzer/files/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Switzer by Indian Type Foundry (Fontshare, ITF Free Font License), self-hosted. */
+    @font-face { font-family: 'Switzer'; src: url('/vendor/fonts/switzer/files/switzer-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Switzer'; src: url('/vendor/fonts/switzer/files/switzer-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Switzer'; src: url('/vendor/fonts/switzer/files/switzer-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Switzer'; src: url('/vendor/fonts/switzer/files/switzer-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
 
     :root {
-      /* ---- Brand palette: cream / orange / sage-green ---- */
-      --cream:        #FFEAD1;  /* page background        */
-      --sage:         #DCE4B8;  /* soft green surface     */
-      --olive:        #515739;  /* deep green, main text  */
-      --orange:       #A52F19;  /* primary accent / CTA; white text passes AA */
+      /* Colours come from the logo (#137A3E) and the Android app (ground #05100B, mint button #6AEFA9). */
+      --ground: #F3F6F2;
+      --ink: #0C1A12;
+      --ink-2: #3A4A40;
+      --accent: #137A3E;
+      --accent-strong: #0D6332;
+      --mint: #6AEFA9;
+      --night: #05100B;
+      --pale: #DCE9DF;
+      --white: #FFFFFF;
 
-      --surface:      #FFFFFF;  /* cards                  */
-      --surface-soft: #FFF6EA;  /* inset panels           */
-      --border:       #948B78;
-      --border-strong:#747C55;
-      --olive-soft:   #4F5637;  /* muted text, AA on light surfaces */
-      --orange-deep:  #8F2A17;  /* high-contrast orange text */
-      --on-accent:    #FFFFFF;  /* text on an orange fill */
+      --margin: clamp(16px, 2.2vw, 32px);
+      --col-gap: clamp(16px, 1.7vw, 24px);
+      --radius: 24px;
 
-      /* ---- Legacy names kept so existing rules keep working ----
-         Names read "dark" for historical reasons; values are now light. */
-      --black:      var(--cream);        /* page background */
-      --dark:       var(--surface);      /* card surface    */
-      --dark2:      var(--surface-soft); /* inset surface   */
-      --green:      var(--orange);       /* accent          */
-      --dark-green: var(--olive);        /* deep accent     */
-      --white:      var(--olive);        /* primary text    */
-      --grey:       var(--olive-soft);   /* muted text      */
-      --light-grey: var(--border);       /* borders         */
+      --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+      --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+      --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+      --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+      --step-display: clamp(2.5rem, 1rem + 6.4vw, 6.25rem);
+      --step-figure: clamp(7rem, 19vw, 20rem);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+      --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      --t-press: 140ms;
+      --t-hover: 180ms;
+      --t-ui: 240ms;
     }
 
-    html {
-      overflow-x: hidden;  /* ✅ Add this! */
-      scroll-behavior: smooth;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    * { margin: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
-      background-color: var(--black);
-      color: var(--white);
-      font-family: 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-      width: 100%;          /* ✅ Add this! */
-      max-width: 100vw;     /* ✅ Add this! */
-      position: relative;   /* ✅ Add this! */
-    }
-
-    /* ✅ Add scroll margin so cards
-       don't hide behind any fixed elements */
-    .card,
-    .activation-section,
-    .success-section {
-      scroll-margin-top: 20px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 20px 40px;
-      background: linear-gradient(180deg, #FFF3E4 0%, #FFEAD1 100%);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .logo-text {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--white);
-    }
-
-    .logo-text span { color: var(--orange-deep); }
-
-    .android-beta {
-      background: var(--surface);
-      border-top: 1px solid var(--border-strong);
-      border-bottom: 1px solid var(--border-strong);
-      padding: 34px 20px;
-    }
-
-    .android-beta-inner {
-      width: min(920px, 100%);
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .android-beta-eyebrow {
-      color: var(--orange-deep);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .android-beta h2 {
-      margin: 8px 0 8px;
-      color: var(--olive);
-      font-size: clamp(26px, 5vw, 36px);
-      line-height: 1.15;
-    }
-
-    .android-beta-copy {
-      color: var(--olive-soft);
-      margin: 0 auto 20px;
-      max-width: 680px;
-    }
-
-    .android-beta-action {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-height: 64px;
-      padding: 12px 16px;
-      border: 2px solid var(--orange-deep);
-      border-radius: 16px;
-      color: var(--orange-deep);
-      background: var(--surface-soft);
-      text-decoration: none;
-      text-align: left;
-      font-weight: 800;
-    }
-
-    .android-beta-action:hover,
-    .android-beta-action:focus-visible {
-      color: var(--on-accent);
-      background: var(--orange-deep);
-      outline: 3px solid var(--olive);
-      outline-offset: 2px;
-    }
-
-    .android-beta-store {
-      justify-content: center;
-      max-width: 340px;
-      margin: 0 auto;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    .android-beta-note {
-      margin: 14px 0 0;
-      color: var(--olive-soft);
-      font-size: 13px;
-    }
-
-    /* Secondary to the Google Play button: smaller, olive outline. */
-    .android-beta-support {
-      justify-content: center;
-      max-width: 340px;
-      min-height: 48px;
-      margin: 16px auto 0;
-      border-color: var(--olive);
-      color: var(--olive);
-      font-size: 15px;
-      text-align: center;
-    }
-
-    .android-beta-support:hover,
-    .android-beta-support:focus-visible {
-      border-color: var(--orange-deep);
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 16px;
-      color: var(--white);
-    }
-
-    .hero h1 span { color: var(--orange-deep); }
-
-    .hero p {
-      font-size: 18px;
-      color: var(--grey);
-      margin-bottom: 24px;
-    }
-
-    .hero-badges {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      background: var(--dark2);
-      border: 1px solid var(--light-grey);
-      color: var(--orange-deep);
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 14px;
-    }
-
-    /* Nine-step visual guide: horizontally scrollable, touch-first, and kept
-       outside the task-critical upload card. Full-size posters open separately. */
-    .tutorial-section {
-      background: var(--sage);
-      border-top: 1px solid var(--border-strong);
-      border-bottom: 1px solid var(--border-strong);
-      padding: 32px 0 26px;
-    }
-
-    .tutorial-header {
-      width: min(1080px, 100%);
-      margin: 0 auto 18px;
-      padding: 0 20px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .tutorial-copy { max-width: 620px; }
-
-    .tutorial-eyebrow {
-      color: var(--orange-deep);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .tutorial-title {
-      color: var(--olive);
-      font-size: 28px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .tutorial-description {
-      color: var(--olive-soft);
-      font-size: 14px;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: 'Switzer', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-size: var(--step-body);
       line-height: 1.5;
-    }
-
-    .tutorial-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .tutorial-position {
-      min-width: 82px;
-      color: var(--olive);
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .tutorial-arrow {
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border-strong);
-      border-radius: 50%;
-      background: var(--surface);
-      color: var(--olive);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .tutorial-arrow:hover:not(:disabled) {
-      background: var(--orange);
-      color: var(--on-accent);
-      transform: translateY(-1px);
-    }
-
-    .tutorial-arrow:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .tutorial-arrow:focus-visible,
-    .tutorial-track:focus-visible,
-    .tutorial-image-link:focus-visible {
-      outline: 3px solid var(--orange);
-      outline-offset: 3px;
-    }
-
-    .tutorial-track {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: max-content;
-      gap: 16px;
-      overflow-x: auto;
-      overscroll-behavior-inline: contain;
-      scroll-snap-type: inline mandatory;
-      scroll-padding-inline: max(20px, calc((100vw - 1080px) / 2));
-      padding: 4px max(20px, calc((100vw - 1080px) / 2)) 18px;
-      list-style: none;
-      scrollbar-color: var(--orange) var(--surface-soft);
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .tutorial-track::-webkit-scrollbar { height: 7px; }
-    .tutorial-track::-webkit-scrollbar-track { background: var(--surface-soft); }
-    .tutorial-track::-webkit-scrollbar-thumb { background: var(--orange); }
-
-    .tutorial-card {
-      width: clamp(220px, 68vw, 270px);
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
-      background: var(--surface);
-      border: 1px solid var(--border-strong);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .tutorial-image-link {
-      display: block;
-      background: var(--olive);
-      text-decoration: none;
-    }
-
-    .tutorial-image {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 793 / 1983;
-      object-fit: cover;
-      display: block;
-    }
-
-    .tutorial-card-copy {
-      padding: 14px 16px 16px;
-    }
-
-    .tutorial-card-step {
-      display: block;
-      color: var(--orange-deep);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-
-    .tutorial-card-title {
-      color: var(--olive);
-      font-size: 15px;
-      font-weight: 800;
-      line-height: 1.35;
-    }
-
-    .tutorial-zoom-hint {
-      display: block;
-      color: var(--olive-soft);
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    @media (max-width: 600px) {
-      .tutorial-section { padding-top: 26px; }
-      .tutorial-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 14px;
-      }
-      .tutorial-title { font-size: 24px; }
-      .tutorial-controls { width: 100%; justify-content: space-between; }
-      .tutorial-card { width: min(72vw, 270px); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .tutorial-arrow { transition: none; }
-      .tutorial-track { scroll-behavior: auto; }
-    }
-
-    /* NEW — split feature banner */
-    .split-banner {
-      background: linear-gradient(90deg, #EFF3DE, #DCE4B8);
-      border: 1px solid var(--dark-green);
-      border-radius: 12px;
-      padding: 14px 20px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .split-banner-icon {
-      font-size: 28px;
-      flex-shrink: 0;
-    }
-
-    .split-banner-text h2 {
-      color: var(--orange-deep);
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-
-    .split-banner-text p {
-      color: var(--grey);
-      font-size: 12px;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 20px;
-      overflow-x: hidden; /* ✅ Add this */
-      width: 100%;        /* ✅ Add this */
-    }
-
-    .card {
-      background: var(--dark);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 20px;
-      animation: cardFadeIn 0.4s ease;
-    }
-
-    @keyframes cardFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Better scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #F0E6D6;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #FD4F2F;
-      border-radius: 3px;
-    }
-
-    /* Better text selection */
-    ::selection {
-      background: rgba(253,79,47,0.3);
-      color: #515739;
-    }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .step-badge {
-      background: var(--green);
-      color: var(--on-accent);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-
-    .upload-zone {
-      border: 2px dashed var(--dark-green);
-      border-radius: 12px;
-      padding: 48px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      background: #FFF9F0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Hover accent.
-       NOTE: this used to be a full-bleed gradient pseudo-element sitting at
-       z-index:-1. Because the hover state also sets `transform`, the element
-       became a stacking context and that pseudo-element stopped painting behind
-       the background — it covered the whole zone and hid the label text. It is
-       now a plain border + glow, which cannot obscure content. */
-    .upload-zone:hover,
-    .upload-zone.dragover {
-      border-color: var(--orange);
-      background: #FFF3E4;
-      box-shadow: 0 0 0 3px rgba(253,79,47,0.16),
-                  0 10px 26px rgba(81,87,57,0.10);
-      transform: translateY(-2px);
-    }
-
-    .upload-icon { font-size: 48px; margin-bottom: 16px; }
-
-    .upload-zone h3 {
-      font-size: 20px;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .upload-zone p {
-      color: var(--grey);
-      font-size: 14px;
-      margin-bottom: 8px;
-    }
-
-    .upload-zone input { display: none; }
-
-    .upload-formats {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .format-tag {
-      background: var(--dark2);
-      color: var(--orange-deep);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    .files-list { display: none; }
-    .files-list.visible { display: block; }
-
-    .file-item {
-      background: var(--dark2);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: nowrap;
-      overflow: hidden;
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .file-icon { font-size: 24px; flex-shrink: 0; }
-
-    .file-info { flex: 1; }
-
-    .file-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 4px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 140px;
-    }
-
-    .file-size { font-size: 12px; color: var(--grey); }
-
-    .file-remove {
-      background: none;
-      border: none;
-      color: var(--grey);
-      cursor: pointer;
-      font-size: 18px;
-      padding: 4px;
-      border-radius: 4px;
-      transition: color 0.2s;
-      flex-shrink: 0;
-    }
-
-    .file-remove:hover { color: #D93025; }
-
-    .size-tracker {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 12px;
-      padding: 10px 14px;
-      background: var(--dark2);
-      border-radius: 8px;
-    }
-
-    .size-text { font-size: 14px; color: var(--grey); }
-    .size-text span { color: var(--orange-deep); font-weight: 700; }
-
-    .progress-container { display: none; }
-    .progress-container.visible { display: block; }
-
-    .progress-item { margin-bottom: 16px; }
-
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 13px;
-      color: var(--grey);
-    }
-
-    .progress-label span:last-child { color: var(--orange-deep); }
-
-    .progress-bar {
-      height: 6px;
-      background: var(--dark2);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--dark-green), var(--green));
-      border-radius: 3px;
-      width: 0%;
-      transition: width 0.3s ease;
-      animation: progressPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes progressPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .step-indicator {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      color: var(--grey);
-      font-size: 10px;
-      font-weight: 600;
-      text-align: center;
-      min-width: 46px;
-    }
-
-    .step-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--light-grey);
-      transition: all 0.3s ease;
-    }
-
-    .step-indicator.active,
-    .step-indicator.complete {
-      color: var(--orange-deep);
-    }
-
-    .step-indicator.active .step-dot {
-      background: var(--green);
-      box-shadow: 0 0 10px rgba(253,79,47,0.6);
-    }
-
-    .step-indicator.complete .step-dot {
-      background: var(--dark-green);
-    }
-
-    /* NEW — splitting status message */
-    .splitting-info {
-      background: #EFF3DE;
-      border: 1px solid var(--dark-green);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 16px;
-      font-size: 13px;
-      color: var(--orange-deep);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 16px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .btn-primary { background: var(--green); color: var(--on-accent); }
-
-    .btn-primary:hover {
-      background: #E64420;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(253,79,47,0.3);
-    }
-
-    .btn-primary:disabled {
-      background: var(--light-grey);
-      color: var(--grey);
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid var(--white);
-    }
-
-    .btn-secondary:hover { background: var(--white); color: var(--black); }
-
-    .btn-whatsapp {
-      background: var(--green);
-      color: var(--on-accent);
-      font-size: 18px;
-      padding: 20px;
-    }
-
-    .btn-whatsapp:hover {
-      background: #E64420;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(253,79,47,0.4);
-    }
-
-    .activation-section { display: none; }
-    .activation-section.visible { display: block; }
-
-    .code-display {
-      background: var(--dark2);
-      border: 2px solid var(--green);
-      border-radius: 12px;
-      padding: 24px;
-      text-align: center;
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* ✅ Glow pulse animation */
-    .code-display::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 12px;
-      border: 2px solid var(--green);
-      animation: codePulse 2s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes codePulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.01); }
-    }
-
-    .code-label {
-      font-size: 13px;
-      color: var(--grey);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .code-value {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--orange-deep);
-      letter-spacing: 6px;
-      margin-bottom: 8px;
-      font-family: monospace;
-      text-shadow: 0 0 20px rgba(253,79,47,0.4);
-    }
-
-    .code-copy {
-      background: none;
-      border: 1px solid var(--light-grey);
-      color: var(--grey);
-      padding: 6px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 13px;
-      transition: all 0.2s;
-    }
-
-    .code-copy:hover { border-color: var(--orange-deep); color: var(--orange-deep); }
-
-    /* NEW — file count info */
-    .file-count-info {
-      background: var(--dark2);
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-bottom: 16px;
-      font-size: 13px;
-      color: var(--grey);
-      text-align: center;
-    }
-
-    .file-count-info span { color: var(--orange-deep); font-weight: 700; }
-
-    .activation-steps {
-      background: var(--dark2);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .activation-steps h4 { color: var(--white); margin-bottom: 16px; font-size: 15px; }
-
-    .step-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .step-num {
-      background: var(--dark-green);
-      color: var(--white);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .step-text { font-size: 14px; color: var(--grey); padding-top: 2px; }
-    .step-text strong { color: var(--white); }
-
-    .success-section { display: none; }
-    .success-section.visible { display: block; }
-
-    .success-animation { text-align: center; padding: 20px 0; }
-
-    .checkmark {
-      font-size: 64px;
-      animation: bounceIn 0.5s ease;
-    }
-
-    @keyframes bounceIn {
-      0% { transform: scale(0); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-
-    .success-title {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--orange-deep);
-      margin: 16px 0 8px;
-    }
-
-    .success-subtitle { color: var(--grey); font-size: 15px; margin-bottom: 24px; }
-
-    .upload-instructions {
-      background: var(--dark2);
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .upload-instructions h4 { color: var(--white); margin-bottom: 16px; font-size: 15px; }
-
-    .share-buttons { display: flex; gap: 12px; margin-top: 16px; }
-    .share-buttons .btn { flex: 1; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 30px 20px;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    footer p { color: var(--grey); font-size: 14px; margin-bottom: 12px; }
-
-    .footer-links { display: flex; gap: 20px; justify-content: center; }
-
-    .footer-links a {
-      color: var(--grey);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover { color: var(--orange-deep); }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 32px; }
-      .code-value { font-size: 28px; letter-spacing: 4px; }
-      .share-buttons { flex-direction: column; }
-      .file-name { max-width: 120px; }
-    }
-
-    /* Step indicators */
-    .step-indicator {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      opacity: 0.3;
-      transition: all 0.5s ease;
-    }
-
-    .step-indicator.active {
-      opacity: 1;
-    }
-
-    .step-indicator.done {
-      opacity: 1;
-    }
-
-    .step-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #E4D9C4;
-      transition: all 0.5s ease;
-    }
-
-    .step-indicator.active .step-dot {
-      background: #FD4F2F;
-      box-shadow: 0 0 8px rgba(253,79,47,0.6);
-      animation: dotPulse 1s ease-in-out infinite;
-    }
-
-    .step-indicator.done .step-dot {
-      background: #FD4F2F;
-    }
-
-    .step-indicator span {
-      font-size: 10px;
-      color: #C9D4A4;
-      transition: color 0.5s ease;
-    }
-
-    .step-indicator.active span {
-      color: var(--orange-deep);
-    }
-
-    .step-indicator.done span {
-      color: #515739;
-    }
-
-    @keyframes dotPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 8px rgba(253,79,47,0.6); }
-      50% { transform: scale(1.3); box-shadow: 0 0 14px rgba(253,79,47,0.9); }
-    }
+      letter-spacing: -0.005em;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+    a, button, label, input { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.04em; line-height: 0.95; text-wrap: balance; }
+    p { text-wrap: pretty; }
+    ul, ol { padding: 0; list-style: none; }
+    ::selection { background: var(--mint); color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .on-dark :focus-visible, .on-accent :focus-visible { outline-color: var(--mint); }
 
-    @keyframes shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(200%); }
-    }
-
-    /* WCAG 2.1 AA: keyboard focus, reflow, readable controls and announcements. */
-    .skip-link {
-      position: fixed;
-      left: 12px;
-      top: 12px;
-      z-index: 200000;
-      padding: 12px 16px;
-      border-radius: 8px;
-      background: var(--olive);
-      color: var(--on-accent);
-      font-weight: 800;
-      transform: translateY(-180%);
-    }
-    .skip-link:focus { transform: translateY(0); }
-    :where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
-      outline: 3px solid var(--orange-deep);
-      outline-offset: 3px;
-    }
     .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
-    .upload-zone[role="button"]:focus-visible,
-    .upload-zone:focus-within {
-      outline: 3px solid var(--orange-deep);
-      outline-offset: 4px;
-      border-color: var(--orange-deep);
+    .skip-link {
+      position: absolute; left: var(--margin); top: -80px; z-index: 50;
+      padding: 12px 20px; border-radius: 999px;
+      background: var(--ink); color: var(--white); text-decoration: none; font-weight: 600;
     }
-    .upload-zone input,
-    .q-opt input { display: block !important; }
-    .q-opt:focus-within { outline: 3px solid var(--orange-deep); outline-offset: 2px; }
-    .q-opt.selected .q-dot { background: var(--orange-deep) !important; }
-    .step-badge { background: var(--orange); color: var(--on-accent); }
-    .step-num { color: var(--on-accent); }
-    .step-indicator span { color: var(--olive-soft); }
-    .file-name {
-      max-width: none;
-      white-space: normal;
-      overflow-wrap: anywhere;
-    }
-    .file-remove { min-width: 44px; min-height: 44px; }
-    .code-copy { min-height: 44px; border-color: var(--border-strong); }
-    footer p,
-    footer [style*="color:#7C8459"],
-    footer [style*="color:#E4D9C4"],
-    footer [style*="color: #E4D9C4"] { color: var(--olive-soft) !important; }
-    .footer-links a { text-decoration: underline; text-underline-offset: 3px; }
-    #urgencyWarning { color: #624500 !important; }
-    #expiredBox > div:first-child { color: #9B2018 !important; }
-    .a11y-status { margin-top: 10px; color: var(--olive); font-size: 14px; }
+    .skip-link:focus { top: 12px; }
 
-    @media (max-width: 600px) {
-      body { width: auto; max-width: none; }
-      .container { overflow: visible; }
-      .file-name { max-width: none; }
+    .link {
+      text-decoration: underline;
+      text-decoration-thickness: 0.07em;
+      text-underline-offset: 0.22em;
+      transition: text-decoration-color var(--t-hover) ease, color var(--t-hover) ease;
     }
 
+    /* The Status segment: a pill. It is the shape of every button, bullet, tab and bar on the page. */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 56px; padding: 0 30px;
+      border: 0; border-radius: 999px;
+      background: var(--accent); color: var(--white);
+      font-size: var(--step-body); font-weight: 600; letter-spacing: -0.01em;
+      text-decoration: none; cursor: pointer;
+      transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease, color var(--t-hover) ease;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn--night { background: var(--night); color: var(--white); }
+    .btn--small { min-height: 44px; padding: 0 20px; font-size: var(--step-small); }
+    .btn--mint { background: var(--mint); color: var(--night); }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover { background: var(--accent-strong); }
+      .btn--night:hover { background: #000; }
+      .btn--mint:hover { background: var(--white); }
+      .link:hover { color: var(--accent); }
+      .on-dark .link:hover, .on-accent .link:hover { color: var(--mint); }
+    }
+
+    /* ---------- Feedback notice ---------- */
+    .notice {
+      position: relative;
+      padding: 10px 60px 10px var(--margin);
+      background: var(--night); color: var(--white);
+      font-size: var(--step-small); line-height: 1.45; text-align: center;
+    }
+    .notice a { color: var(--mint); font-weight: 500; }
+    .notice__close {
+      position: absolute; top: 50%; right: max(4px, calc(var(--margin) - 12px));
+      transform: translateY(-50%);
+      width: 44px; height: 44px; border: 0; border-radius: 999px;
+      background: transparent; color: var(--white);
+      font-size: var(--step-lead); line-height: 1; cursor: pointer;
+    }
+    @media (hover: hover) and (pointer: fine) { .notice__close:hover { background: var(--accent); } }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 20px var(--margin);
+    }
+    .wordmark {
+      display: inline-flex; align-items: center; gap: 12px;
+      font-size: var(--step-lead); font-weight: 700; letter-spacing: -0.03em;
+      text-decoration: none; color: var(--ink);
+    }
+    .wordmark img { width: 40px; height: 40px; }
+    .nav__links { display: flex; gap: clamp(16px, 2.4vw, 32px); }
+    .nav__links a { font-weight: 500; text-decoration-color: transparent; }
+    .nav__links a:hover { text-decoration-color: currentColor; }
+    @media (max-width: 640px) { .nav__links li:not(.nav__keep) { display: none; } }
+
+    /* ---------- Hero: one giant segment entering from the right ---------- */
+    .hero {
+      position: relative; overflow: clip;
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap);
+      padding: 0 var(--margin);
+      min-height: max(620px, calc(100svh - 124px));
+    }
+    .hero__copy { grid-column: 1 / span 7; align-self: center; position: relative; z-index: 1; padding: 40px 0 72px; }
+    .hero h1 { font-size: var(--step-display); max-width: 16ch; }
+    .hero__lead { margin-top: 36px; max-width: 32ch; font-size: var(--step-lead); line-height: 1.35; letter-spacing: -0.015em; }
+    .hero__actions { margin-top: 40px; }
+    .hero__note { margin-top: 20px; max-width: 46ch; font-size: var(--step-small); color: var(--ink-2); }
+    .hero__stage {
+      grid-column: 8 / span 5; position: relative;
+      margin-right: calc(-1 * var(--margin));
+      display: grid; place-items: center; padding: 48px 0;
+    }
+    .hero__shape {
+      position: absolute; left: 6%; top: -14%;
+      width: 170%; height: 128%;
+      border-radius: 9999px; background: var(--accent);
+    }
+    .hero__float { position: relative; width: clamp(260px, 27vw, 420px); }
+    .hero__media { border-radius: var(--radius); overflow: clip; background: var(--night); }
+
+    @media (max-width: 899px) {
+      .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+      .hero__copy { grid-column: 1; padding: clamp(32px, 9svh, 88px) 0 32px; }
+      .hero h1 { font-size: clamp(2.5rem, 10.4vw, 5rem); }
+      .hero__lead { margin-top: 28px; font-size: var(--step-body); line-height: 1.5; }
+      .hero__actions { margin-top: 28px; }
+      .hero__stage { grid-column: 1; margin: 0 calc(-1 * var(--margin)); padding: 36px 0 0; place-items: start center; }
+      .hero__shape { left: 50%; top: 20%; width: 130vw; height: 150%; transform: translateX(-50%); }
+      .hero__float { width: min(68vw, 360px); }
+      .hero__media { border-radius: var(--radius) var(--radius) 0 0; }
+    }
+
+    /* ---------- How the app works: one card, four fields ---------- */
+    .flow { position: relative; }
+    .flow__title {
+      position: absolute; z-index: 1; left: 28px; top: clamp(32px, 5svh, 56px);
+      max-width: 9ch; font-size: var(--step-head); font-weight: 700; letter-spacing: -0.04em; line-height: 0.95;
+    }
+    .flow__list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .flow__field {
+      position: relative; display: flex; flex-direction: column;
+      min-height: max(560px, 84svh); padding: 28px;
+    }
+    .flow__field:nth-child(1) { background: var(--pale); color: var(--ink); }
+    .flow__field:nth-child(2) { background: var(--mint); color: var(--ink); }
+    .flow__field:nth-child(3) { background: var(--accent); color: var(--white); }
+    .flow__field:nth-child(4) { background: var(--night); color: var(--white); }
+    .flow__card {
+      position: absolute; top: 40%; left: 50%; translate: -50% -50%;
+      width: min(300px, calc(100% - 56px));
+      border-radius: var(--radius); overflow: clip; background: var(--night);
+      transition: transform 150ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) { .flow__field:hover .flow__card { transform: translateY(-6px); } }
+    .flow__clause {
+      margin-top: auto; max-width: 15ch;
+      font-size: var(--step-lead); font-weight: 600; letter-spacing: -0.025em; line-height: 1.12;
+    }
+    @media (min-width: 600px) and (max-width: 899px) {
+      .flow__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .flow__field { min-height: 600px; }
+    }
+    @media (max-width: 599px) {
+      .flow__title { position: static; max-width: none; padding: 40px 20px 0; background: var(--pale); font-size: var(--step-head); line-height: 0.95; }
+      .flow__list { grid-template-columns: minmax(0, 1fr); }
+      .flow__field { min-height: 64svh; padding: 28px 20px 48px; }
+      .flow__clause { order: -1; margin-top: 0; max-width: 18ch; }
+      .flow__card { position: static; translate: none; width: min(320px, 100%); margin-top: 32px; }
+    }
+
+    /* ---------- Parts calculator: a figure set by a slider ---------- */
+    .parts {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap);
+      align-content: space-between;
+      min-height: 88svh;
+      padding: clamp(96px, 10vw, 160px) var(--margin) clamp(72px, 7vw, 112px);
+    }
+    .parts h2 { grid-column: 1 / span 8; font-size: var(--step-head); }
+    .calc { grid-column: 1 / span 5; margin-top: 32px; max-width: 440px; display: grid; gap: 24px; }
+    .calc__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .calc__row label { font-weight: 500; }
+    .calc__value { font-weight: 600; font-variant-numeric: tabular-nums; }
+    .calc input[type="range"] { width: 100%; height: 44px; margin: -8px 0; accent-color: var(--accent); cursor: pointer; }
+    .calc fieldset { border: 0; padding: 0; min-width: 0; }
+    .calc legend { font-weight: 500; margin-bottom: 12px; }
+    .choice { display: flex; flex-wrap: wrap; gap: 8px; }
+    .choice label {
+      position: relative; display: inline-flex; flex-direction: column; justify-content: center;
+      min-height: 56px; padding: 6px 22px; border-radius: 999px;
+      background: var(--pale); cursor: pointer; line-height: 1.25;
+      transition: background-color var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+    }
+    .choice label:active { transform: scale(0.97); }
+    .choice small { font-size: var(--step-small); }
+    .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+    .choice label:has(input:checked) { background: var(--accent); color: var(--white); }
+    .choice label:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+    @media (hover: hover) and (pointer: fine) { .choice label:not(:has(input:checked)):hover { background: var(--mint); } }
+
+    .parts__result {
+      grid-column: 1 / span 7; align-self: end; margin-top: clamp(56px, 9svh, 120px);
+      display: flex; align-items: baseline; gap: 0.06em;
+      font-size: var(--step-figure); font-weight: 700; letter-spacing: -0.05em; line-height: 0.8;
+      font-variant-numeric: tabular-nums;
+    }
+    .parts__unit { font-size: 0.22em; font-weight: 600; letter-spacing: -0.02em; }
+    .parts__how { grid-column: 9 / span 4; align-self: end; max-width: 30ch; }
+    .segments { grid-column: 1 / -1; margin-top: 48px; display: flex; gap: 6px; }
+    .segments li {
+      flex: var(--w, 29) 1 0; min-width: 4px; height: 16px;
+      border-radius: 999px; background: var(--accent);
+    }
+    .segments li.is-over { background: var(--ink-2); opacity: 0.4; }
+    @media (prefers-reduced-motion: no-preference) {
+      .segments li { animation: seg-in 420ms var(--ease-out) both; animation-delay: calc(var(--i, 0) * 18ms); transform-origin: left center; }
+      @keyframes seg-in { from { opacity: 0; transform: scaleX(0.96); } }
+    }
+    @media (max-width: 899px) {
+      .parts { grid-template-columns: minmax(0, 1fr); min-height: 84svh; }
+      .parts h2, .calc, .parts__result, .parts__how, .segments { grid-column: 1; }
+      .calc { max-width: none; }
+      .parts__result { font-size: 30vw; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .parts__unit { font-size: var(--step-lead); }
+      .parts__how { margin-top: 20px; }
+      .segments { margin-top: 32px; gap: 4px; }
+      .segments li { height: 12px; }
+    }
+
+    /* ---------- Posting guide: one Status frame, its contents change ---------- */
+    .guide {
+      background: var(--night); color: var(--white);
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap);
+      align-items: center;
+      padding: clamp(96px, 10vw, 160px) var(--margin);
+    }
+    .guide__copy { grid-column: 1 / span 6; }
+    .guide h2 { font-size: var(--step-head); }
+    .guide__intro { margin-top: 28px; max-width: 44ch; }
+    .guide__steps { margin-top: 40px; display: grid; gap: 2px; }
+    .guide__steps a {
+      display: flex; align-items: center; gap: 16px;
+      min-height: 46px; padding: 4px 0;
+      color: rgba(255, 255, 255, 0.72); text-decoration: none;
+      transition: color var(--t-hover) ease;
+    }
+    .guide__steps a::before {
+      content: ''; flex: none; width: 20px; height: 8px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.36);
+      transition: width var(--t-ui) var(--ease-out), background-color var(--t-hover) ease;
+    }
+    .guide__steps a[aria-current="step"] { color: var(--white); font-weight: 500; }
+    .guide__steps a[aria-current="step"]::before { width: 40px; background: var(--mint); }
+    @media (hover: hover) and (pointer: fine) { .guide__steps a:hover { color: var(--white); } .guide__steps a:hover::before { background: var(--white); } }
+    .guide__viewer { grid-column: 8 / span 4; justify-self: center; width: clamp(240px, 22vw, 320px); }
+    .viewer { position: relative; aspect-ratio: 2 / 5; border-radius: var(--radius); overflow: clip; background: #000; }
+    .viewer__bars { position: absolute; z-index: 2; top: 10px; left: 12px; right: 12px; display: flex; gap: 4px; }
+    .viewer__bars span { flex: 1; height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.38); transition: background-color var(--t-ui) ease; }
+    .viewer__bars span.is-done, .viewer__bars span.is-current { background: var(--white); }
+    .viewer__frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 400ms ease; }
+    .viewer__frame.is-current { opacity: 1; }
+    .viewer__tap { position: absolute; z-index: 3; top: 0; bottom: 0; border: 0; padding: 0; background: transparent; cursor: pointer; }
+    .viewer__tap--prev { left: 0; width: 35%; }
+    .viewer__tap--next { right: 0; width: 65%; }
+    .viewer__tap:focus-visible { outline: 3px solid var(--mint); outline-offset: -6px; border-radius: var(--radius); }
+    .viewer__caption { margin-top: 16px; display: flex; justify-content: space-between; gap: 12px; font-size: var(--step-small); }
+    .viewer__caption a { color: var(--mint); }
+    @media (max-width: 899px) {
+      .guide { grid-template-columns: minmax(0, 1fr); }
+      .guide__copy { display: contents; }
+      .guide h2, .guide__intro, .guide__viewer, .guide__steps { grid-column: 1; }
+      .guide__viewer { order: 1; width: min(72vw, 340px); margin-top: 48px; }
+      .guide__steps { order: 2; margin-top: 48px; }
+    }
+
+    /* ---------- FAQ: tabbed index cards ---------- */
+    .faq {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap);
+      padding: clamp(96px, 11vw, 180px) var(--margin);
+    }
+    .faq h2, .faq__stack { grid-column: 3 / span 8; }
+    .faq h2 { font-size: var(--step-head); }
+    .faq__stack { margin-top: 64px; }
+    .qcard { position: relative; padding-top: 22px; --tab-w: 200px; --tab-step: 150px; }
+    .qcard + .qcard { margin-top: -18px; }
+    .qcard__tab {
+      position: absolute; z-index: 1; top: 0; left: calc(var(--i) * min(var(--tab-step), (100% - var(--tab-w)) / 5));
+      width: var(--tab-w); height: 46px; padding: 0 22px;
+      display: flex; align-items: center;
+      border-radius: 999px; font-weight: 500; white-space: nowrap;
+    }
+    .qcard__body { position: relative; border-radius: var(--radius); }
+    .qcard:nth-child(3n+1) .qcard__tab, .qcard:nth-child(3n+1) .qcard__body { background: var(--pale); color: var(--ink); }
+    .qcard:nth-child(3n+2) .qcard__tab, .qcard:nth-child(3n+2) .qcard__body { background: var(--mint); color: var(--ink); }
+    .qcard:nth-child(3n) .qcard__tab, .qcard:nth-child(3n) .qcard__body { background: var(--night); color: var(--white); }
+    .qcard h3 { font-size: var(--step-lead); font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; }
+    .qcard__btn {
+      display: block; width: 100%; min-height: 96px; padding: 34px 28px 30px;
+      border: 0; background: transparent; text-align: left; cursor: pointer; border-radius: var(--radius);
+    }
+    .qcard__btn:focus-visible { outline-offset: -4px; }
+    .qcard:nth-child(3n) .qcard__btn:focus-visible { outline-color: var(--mint); }
+    .qcard__panel { display: grid; grid-template-rows: 1fr; transition: grid-template-rows 320ms var(--ease-out); }
+    .qcard__panel > div { overflow: hidden; }
+    .qcard__panel p { max-width: 50ch; padding: 0 28px 32px; }
+    .js .qcard:not(.is-open) .qcard__panel { grid-template-rows: 0fr; }
+    .js .qcard:not(.is-open) .qcard__panel > div { visibility: hidden; transition: visibility 0s 320ms; }
+    @media (max-width: 899px) {
+      .faq { grid-template-columns: minmax(0, 1fr); }
+      .faq h2, .faq__stack { grid-column: 1; }
+
+      .qcard { --tab-w: 128px; --tab-step: 44px; }
+      .qcard__tab { padding: 0 16px; font-size: var(--step-small); }
+      .qcard__btn { min-height: 88px; padding: 32px 20px 24px; }
+      .qcard__panel p { padding: 0 20px 24px; }
+    }
+
+    /* ---------- Closing: the app's first screen, already open ---------- */
+    .cta {
+      background: var(--accent); color: var(--white);
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap);
+      min-height: 90svh; padding: clamp(80px, 8vw, 128px) var(--margin) clamp(64px, 6vw, 96px);
+    }
+    .cta__copy { grid-column: 1 / span 6; align-self: end; }
+    .cta h2 { font-size: var(--step-display); line-height: 0.92; max-width: 9ch; }
+    .cta__lead { margin-top: 28px; max-width: 38ch; }
+    .cta__actions { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+    .cta__screen { grid-column: 8 / span 4; align-self: center; justify-self: center; width: clamp(260px, 25vw, 380px); border-radius: var(--radius); overflow: clip; background: var(--night); }
+    @media (max-width: 899px) {
+      .cta { grid-template-columns: minmax(0, 1fr); min-height: 84svh; }
+      .cta__copy, .cta__screen { grid-column: 1; }
+      .cta__copy { align-self: start; }
+      .cta h2 { font-size: clamp(2.5rem, 10.4vw, 5rem); }
+      .cta__screen { width: min(100%, 360px); margin-top: 56px; justify-self: start; }
+    }
+
+    /* ---------- Footer: the name built from Status segments ---------- */
+    .footer { background: var(--night); color: var(--white); padding: clamp(48px, 5vw, 80px) var(--margin) 32px; }
+    .mark { display: flex; gap: 4px; height: clamp(160px, 26svh, 240px); }
+    .mark__word { display: flex; flex: var(--n) 1 0; gap: 4px; align-items: flex-end; }
+    .mark__word span {
+      flex: 1 1 0; min-width: 0; height: var(--h);
+      display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.2em;
+      border-radius: 999px;
+      font-size: var(--step-display); font-weight: 700; line-height: 1; letter-spacing: -0.04em; color: var(--night);
+    }
+    .mark__word span:nth-child(3n+1) { background: var(--mint); }
+    .mark__word span:nth-child(3n+2) { background: var(--accent); }
+    .mark__word span:nth-child(3n) { background: var(--pale); }
+    .footer__grid {
+      margin-top: 56px;
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--col-gap); row-gap: 32px;
+    }
+    .footer__col { grid-column: span 2; display: grid; gap: 10px; align-content: start; }
+    .footer__contact { grid-column: 9 / span 4; display: grid; gap: 10px; align-content: start; }
+    .footer__grid a { text-decoration-color: transparent; }
+    .footer__grid a:hover { text-decoration-color: currentColor; }
+    .footer__base {
+      margin-top: 72px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;
+      font-size: var(--step-small); color: rgba(255, 255, 255, 0.78);
+    }
+    @media (max-width: 899px) {
+      .footer__col { grid-column: span 6; }
+      .footer__contact { grid-column: 1 / -1; }
+    }
+    @media (max-width: 599px) {
+      .mark { flex-direction: column; height: auto; }
+      .mark__word { height: 22svh; min-height: 140px; }
+      .mark__word span { font-size: clamp(2.5rem, 10.4vw, 4rem); }
+    }
+
+    /* ---------- Maintenance dialog (hidden unless MAINTENANCE_MODE is on) ---------- */
+    .maint { display: none; position: fixed; inset: 0; z-index: 100000; align-items: center; justify-content: center; padding: 20px; background: rgba(5, 16, 11, 0.9); }
+    .maint__box { width: 100%; max-width: 430px; padding: 32px 28px; border-radius: var(--radius); background: var(--ground); color: var(--ink); text-align: center; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45); /* taste-skill-ignore: a dialog floats */ }
+    .maint__box h2 { font-size: var(--step-lead); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; }
+
+    /* ---------- Motion ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .hero__copy > * { animation: rise 900ms var(--ease-expo) both; }
+      .js .hero__copy > :nth-child(2) { animation-delay: 90ms; }
+      .js .hero__copy > :nth-child(3) { animation-delay: 180ms; }
+      .js .hero__copy > :nth-child(4) { animation-delay: 270ms; }
+      .js .shutter { animation: shutter 1100ms var(--ease-in-out) 100ms both; }
+      .js .shutter img { animation: settle 1100ms var(--ease-soft) 100ms both; }
+      @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+      @keyframes shutter { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+      @keyframes settle { from { transform: scale(1.12); } }
+
+      .js [data-reveal] {
+        opacity: 0; transform: translateY(24px);
+        transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-expo);
+        transition-delay: calc(var(--d, 0) * 70ms);
+      }
+      .js [data-reveal].is-in { opacity: 1; transform: none; }
+    }
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .hero__float { animation: drift linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+        @keyframes drift { to { transform: translateY(-7%); } }
+      }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+      .viewer__frame { transition: opacity 200ms ease !important; }
     }
   </style>
-  <!-- ✅ Preconnect — browser connects early -->
+
+  <!-- Preconnect: browser connects early -->
   <link rel="preconnect" href="https://www.googletagmanager.com"/>
   <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
 </head>
 <body>
-  <a class="skip-link" href="#androidBetaTitle">Skip to the Android app</a>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
   <div id="globalStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- Feedback banner (the donate link lives under the Google Play button) -->
-  <div id="sdFeedbackBar" style="display:flex;align-items:center;justify-content:center;gap:8px;position:relative;background:linear-gradient(90deg,#515739,#C4381A);color:#FFEAD1;font-size:13px;line-height:1.45;padding:10px 38px 10px 16px;text-align:center;">
-    <span>👋 Facing an issue or have feedback? <a href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">DM me on Instagram</a> &nbsp;·&nbsp; <a href="https://github.com/Shamanthnp1/WAstatus" target="_blank" rel="noopener" style="color:#FFEAD1;font-weight:700;text-decoration:underline;">⭐ Open source</a></span>
-    <button id="sdFeedbackClose" aria-label="Dismiss feedback banner" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:#FFEAD1;font-size:20px;cursor:pointer;line-height:1;padding:0 6px;">&times;</button>
+  <!-- Feedback notice (the donate link lives in the closing section) -->
+  <div id="sdFeedbackBar" class="notice on-dark">
+    <p>Found a problem or have feedback? <a class="link" href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener">DM me on Instagram</a>. StatusDrop is <a class="link" href="https://github.com/Shamanthnp1/WAstatus" target="_blank" rel="noopener">open source on GitHub</a>.</p>
+    <button id="sdFeedbackClose" class="notice__close" type="button" aria-label="Dismiss feedback banner">&times;</button>
   </div>
 
   <script>
@@ -1265,19 +654,16 @@
     })();
   </script>
 
-  <!-- Maintenance notice — set MAINTENANCE_MODE=false (below) to turn it off -->
-  <div id="sdMaintOverlay" style="display:none;position:fixed;inset:0;z-index:100000;background:rgba(81,87,57,0.92);align-items:center;justify-content:center;padding:20px;">
-    <div style="position:relative;max-width:430px;width:100%;background:#F0E6D6;border:1px solid #F6EAD6;border-radius:18px;padding:32px 24px;text-align:center;color:#515739;box-shadow:0 20px 60px rgba(81,87,57,0.55);">
-      <div style="font-size:44px;margin-bottom:8px;">🚧</div>
-      <h3 style="margin:0 0 10px;font-size:22px;font-weight:700;">Out of service</h3>
-      <p style="margin:0;font-size:14px;line-height:1.6;color:#7C8459;">
-        StatusDrop is temporarily out of service while we fix things. Please check back a little later — sorry for the inconvenience, and thanks for your patience! 🙏
-      </p>
+  <!-- Maintenance notice: set MAINTENANCE_MODE=true (below) to show it -->
+  <div id="sdMaintOverlay" class="maint" role="dialog" aria-modal="true" aria-labelledby="sdMaintTitle">
+    <div class="maint__box">
+      <h2 id="sdMaintTitle">Out of service</h2>
+      <p>StatusDrop is temporarily out of service while we fix things. Please check back a little later. Sorry for the inconvenience, and thanks for your patience.</p>
     </div>
   </div>
   <script>
     (function () {
-      var MAINTENANCE_MODE = false; // ← set to true to show the out-of-service screen
+      var MAINTENANCE_MODE = false; // set to true to show the out-of-service screen
       if (!MAINTENANCE_MODE) return;
       window.__sdMaintenancePending = true; // hold the donation popup until dismissed
       function close() {
@@ -1296,579 +682,417 @@
     })();
   </script>
 
-  <!-- Donation popup removed — the donate button now sits under the Google Play button -->
+  <!-- Donation popup removed: the donate link now sits in the closing section -->
   <script>
     (function () {
-      // Legacy no-op: the donation popup was replaced by a button in the app section.
+      // Legacy no-op: the donation popup was replaced by a link on the page.
       window.__sdShowDonate = function () {};
     })();
   </script>
 
-  <!-- HERO -->
-  <main id="mainContent">
-  <div class="hero">
-    <div class="logo">
-      <div class="logo-icon">
-        <img src="/logo.png"
-             alt="StatusDrop"
-             style="width:36px;
-                    height:36px;
-                    object-fit:contain;
-                    border-radius:6px;"/>
-      </div>
-      <div class="logo-text">Status<span>Drop</span></div>
-    </div>
-    <h1>
-      <span>WhatsApp Status</span><br/>
-      Video Compressor
-    </h1>
-    <p>
-      Stop blurry Status videos! The StatusDrop Android app prepares HD videos
-      up to 300MB on your phone — auto-split into 29s clips & delivered to your WhatsApp free
-    </p>
-    <div class="hero-badges">
-      <span class="badge">✅ Free</span>
-      <span class="badge">⚡ Fast</span>
-      <span class="badge">🔒 Private</span>
-      <span class="badge">✂️ Auto Split</span>
-      <span class="badge">🌍 Works Worldwide</span>
-    </div>
-  </div>
+  <header class="nav">
+    <a class="wordmark" href="/" aria-label="StatusDrop home" translate="no">
+      <img src="/logo.png" width="40" height="40" alt=""/>
+      StatusDrop
+    </a>
+    <nav aria-label="Page sections">
+      <ul class="nav__links">
+        <li><a class="link" href="#how-it-works">How it works</a></li>
+        <li class="nav__keep"><a class="link" href="#posting-guide">Posting guide</a></li>
+        <li><a class="link" href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section class="android-beta" aria-labelledby="androidBetaTitle">
-    <div class="android-beta-inner">
-      <div class="android-beta-eyebrow">Now on Google Play</div>
-      <h2 id="androidBetaTitle" tabindex="-1">Get the StatusDrop Android app</h2>
-      <p class="android-beta-copy">
-        StatusDrop is now a free Android app that prepares HD Status videos on your
-        phone. The web compressor has been retired: server-side processing was
-        expensive to run, and preparing videos on your phone keeps StatusDrop free
-        and sustainable.
-      </p>
-      <a class="android-beta-action android-beta-store"
-         href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop"
-         target="_blank" rel="noopener">
-        Get it on Google Play
-      </a>
-      <p class="android-beta-note">Free · No login · Android 10 or newer</p>
-      <a class="android-beta-action android-beta-support"
-         href="https://ko-fi.com/wastatus"
-         target="_blank" rel="noopener">
-        Support the iOS app launch <span aria-hidden="true">☕</span>
-      </a>
-    </div>
-  </section>
+  <main id="mainContent" tabindex="-1">
 
-  <!-- VISUAL TUTORIAL — manual horizontal scroll; no autoplay so users can
-       read each step at their own pace. Posters open full-size for zooming. -->
-  <section class="tutorial-section" aria-labelledby="tutorialTitle">
-    <div class="tutorial-header">
-      <div class="tutorial-copy">
-        <div class="tutorial-eyebrow">9-step visual guide</div>
-        <h2 class="tutorial-title" id="tutorialTitle">Post your video in full HD</h2>
-        <p class="tutorial-description">
-          Swipe through the complete WhatsApp flow. Tap any image to open it full size.
-        </p>
-      </div>
-      <div class="tutorial-controls" aria-label="Tutorial controls">
-        <button class="tutorial-arrow" id="tutorialPrev" type="button"
-                aria-label="Previous tutorial step" aria-controls="tutorialTrack" disabled>
-          &lsaquo;
-        </button>
-        <span class="tutorial-position" id="tutorialPosition" aria-live="polite">Step 1 of 9</span>
-        <button class="tutorial-arrow" id="tutorialNext" type="button"
-                aria-label="Next tutorial step" aria-controls="tutorialTrack">
-          &rsaquo;
-        </button>
-      </div>
-    </div>
-
-    <ol class="tutorial-track" id="tutorialTrack" tabindex="0"
-        aria-label="Nine-step WhatsApp Status posting tutorial">
-      <li class="tutorial-card" data-step="1" aria-label="Step 1 of 9" aria-current="step">
-        <a class="tutorial-image-link" href="/tutorial/01-activate-on-whatsapp.png"
-           target="_blank" rel="noopener" aria-label="Open step 1 image full size">
-          <img class="tutorial-image" src="/tutorial/01-activate-on-whatsapp.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
-               alt="Step 1: On StatusDrop, read the instructions and tap Activate on WhatsApp."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 1 of 9</span>
-          <div class="tutorial-card-title">Activate on WhatsApp</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__copy">
+        <h1 id="heroTitle">WhatsApp Status<br/> video compressor</h1>
+        <p class="hero__lead">A free Android app that cuts your video into 29-second parts on your phone and sends them to your WhatsApp in HD.</p>
+        <div class="hero__actions">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop" target="_blank" rel="noopener">Get it on Google Play</a>
         </div>
-      </li>
+        <p class="hero__note">Free, no login, Android&nbsp;10 or newer. Your original video never leaves your phone.</p>
+      </div>
+      <div class="hero__stage">
+        <div class="hero__shape" aria-hidden="true"></div>
+        <div class="hero__float">
+          <figure class="hero__media shutter">
+            <img src="/img/app/hero-choose-quality.webp" width="652" height="1200" fetchpriority="high"
+                 alt="The StatusDrop app with a 110 MB 4K video picked and 1080p HD, 29-second parts, selected."/>
+          </figure>
+        </div>
+      </div>
+    </section>
 
-      <li class="tutorial-card" data-step="2" aria-label="Step 2 of 9">
-        <a class="tutorial-image-link" href="/tutorial/02-send-the-code.png"
-           target="_blank" rel="noopener" aria-label="Open step 2 image full size">
-          <img class="tutorial-image" src="/tutorial/02-send-the-code.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+    <!-- HOW THE APP WORKS -->
+    <section class="flow" id="how-it-works" aria-labelledby="flowTitle">
+      <h2 class="flow__title" id="flowTitle">How the app works</h2>
+      <ol class="flow__list">
+        <li class="flow__field">
+          <figure class="flow__card"><img data-reveal src="/img/app/card-choose.webp" width="628" height="362" loading="lazy" decoding="async"
+               alt="The app’s Choose videos step: up to 3 videos, 300&nbsp;MB in total."/></figure>
+          <p class="flow__clause" data-reveal style="--d:1">First, pick up to 3 videos.</p>
+        </li>
+        <li class="flow__field">
+          <figure class="flow__card"><img data-reveal style="--d:1" src="/img/app/card-compress.webp" width="600" height="582" loading="lazy" decoding="async"
+               alt="Compressing on this phone, 73 percent done. The original video stays on the phone."/></figure>
+          <p class="flow__clause" data-reveal style="--d:2">Next, your phone compresses them.</p>
+        </li>
+        <li class="flow__field on-accent">
+          <figure class="flow__card"><img data-reveal style="--d:2" src="/img/app/card-send.webp" width="612" height="472" loading="lazy" decoding="async"
+               alt="Sending securely: the finished clip is 83 percent uploaded."/></figure>
+          <p class="flow__clause" data-reveal style="--d:3">Then the finished parts upload.</p>
+        </li>
+        <li class="flow__field on-dark">
+          <figure class="flow__card"><img data-reveal style="--d:3" src="/img/app/card-ready.webp" width="628" height="630" loading="lazy" decoding="async"
+               alt="Ready for WhatsApp: an activation code, a five-minute timer and an Open WhatsApp button."/></figure>
+          <p class="flow__clause" data-reveal style="--d:4">Last, send the code to WhatsApp.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PARTS CALCULATOR -->
+    <section class="parts" id="parts" aria-labelledby="partsTitle">
+      <h2 id="partsTitle" data-reveal>How long is your video?</h2>
+      <form class="calc" data-ui data-reveal style="--d:1" onsubmit="return false">
+        <div class="calc__row">
+          <label for="calcLength">Video length</label>
+          <span class="calc__value" id="calcLengthOut">2&nbsp;min 10&nbsp;s</span>
+        </div>
+        <input type="range" id="calcLength" name="length" min="5" max="1200" step="1" value="130" aria-valuetext="2 minutes 10 seconds"/>
+        <fieldset>
+          <legend>Quality</legend>
+          <div class="choice">
+            <label><input type="radio" name="calcProfile" value="hd29" checked/>1080p HD <small>29-second parts</small></label>
+            <label><input type="radio" name="calcProfile" value="long59"/>720p longer clips <small>Up to 59 seconds</small></label>
+          </div>
+        </fieldset>
+      </form>
+      <p class="parts__result" data-reveal style="--d:2"><span id="calcParts">5</span> <span class="parts__unit" id="calcUnit">parts</span></p>
+      <p class="parts__how" id="calcHow" data-reveal style="--d:3">Your video’s length divided by 29 seconds, rounded up. Each part stays under 16&nbsp;MB, and one delivery holds up to 20 parts.</p>
+      <ol class="segments" id="calcSegments" aria-hidden="true">
+        <li style="--w:29;--i:0"></li><li style="--w:29;--i:1"></li><li style="--w:29;--i:2"></li><li style="--w:29;--i:3"></li><li style="--w:14;--i:4"></li>
+      </ol>
+      <p class="sr-only" id="calcStatus" aria-live="polite" aria-atomic="true"></p>
+    </section>
+
+    <!-- POSTING GUIDE -->
+    <section class="guide on-dark" id="posting-guide" aria-labelledby="guideTitle">
+      <div class="guide__copy">
+        <h2 id="guideTitle" data-reveal>Post your video in full HD</h2>
+        <p class="guide__intro" data-reveal style="--d:1">The bot sends your parts into a WhatsApp chat. Post each one this way, or WhatsApp compresses it again on the way to your Status.</p>
+        <ol class="guide__steps" id="guideSteps" aria-label="9 steps to post in full HD" data-reveal style="--d:2">
+          <li><a href="/tutorial/step-01.webp" aria-current="step">Activate on WhatsApp</a></li>
+          <li><a href="/tutorial/step-02.webp">Send the code</a></li>
+          <li><a href="/tutorial/step-03.webp">Read and download</a></li>
+          <li><a href="/tutorial/step-04.webp">Open a chat and Gallery</a></li>
+          <li><a href="/tutorial/step-05.webp">Select your video</a></li>
+          <li><a href="/tutorial/step-06.webp">Add a caption and send</a></li>
+          <li><a href="/tutorial/step-07.webp">Forward the new video</a></li>
+          <li><a href="/tutorial/step-08.webp">Choose My Status and send</a></li>
+          <li><a href="/tutorial/step-09.webp">Done, Status posted</a></li>
+        </ol>
+      </div>
+      <div class="guide__viewer" data-reveal style="--d:1">
+        <div class="viewer" id="guideViewer" data-ui>
+          <div class="viewer__bars" aria-hidden="true">
+            <span class="is-current"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <img class="viewer__frame is-current" src="/tutorial/step-01.webp" width="640" height="1600" loading="lazy" decoding="async"
+               alt="Step 1: In the StatusDrop app, read the instructions and tap Open WhatsApp, then send the prefilled message."/>
+          <img class="viewer__frame" src="/tutorial/step-02.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 2: In WhatsApp, send the activation message that is already filled in."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 2 of 9</span>
-          <div class="tutorial-card-title">Send the code</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="3" aria-label="Step 3 of 9">
-        <a class="tutorial-image-link" href="/tutorial/03-read-and-download.png"
-           target="_blank" rel="noopener" aria-label="Open step 3 image full size">
-          <img class="tutorial-image" src="/tutorial/03-read-and-download.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-03.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 3: Read the posting instructions in the StatusDrop chat and download the delivered video."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 3 of 9</span>
-          <div class="tutorial-card-title">Read and download</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="4" aria-label="Step 4 of 9">
-        <a class="tutorial-image-link" href="/tutorial/04-open-chat-and-gallery.png"
-           target="_blank" rel="noopener" aria-label="Open step 4 image full size">
-          <img class="tutorial-image" src="/tutorial/04-open-chat-and-gallery.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-04.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 4: Open any chat, tap the paperclip attachment button, and choose Gallery."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 4 of 9</span>
-          <div class="tutorial-card-title">Open a chat and Gallery</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="5" aria-label="Step 5 of 9">
-        <a class="tutorial-image-link" href="/tutorial/05-select-your-video.png"
-           target="_blank" rel="noopener" aria-label="Open step 5 image full size">
-          <img class="tutorial-image" src="/tutorial/05-select-your-video.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-05.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 5: In Gallery Recents, select the StatusDrop video you just downloaded."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 5 of 9</span>
-          <div class="tutorial-card-title">Select your video</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="6" aria-label="Step 6 of 9">
-        <a class="tutorial-image-link" href="/tutorial/06-add-caption-and-send.png"
-           target="_blank" rel="noopener" aria-label="Open step 6 image full size">
-          <img class="tutorial-image" src="/tutorial/06-add-caption-and-send.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-06.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 6: Confirm HD is enabled, optionally add a caption, and send the video into the chat."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 6 of 9</span>
-          <div class="tutorial-card-title">Add a caption and send</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="7" aria-label="Step 7 of 9">
-        <a class="tutorial-image-link" href="/tutorial/07-forward-the-new-video.png"
-           target="_blank" rel="noopener" aria-label="Open step 7 image full size">
-          <img class="tutorial-image" src="/tutorial/07-forward-the-new-video.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-07.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 7: Tap Forward on the new video copy you just sent, not the original bot message."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 7 of 9</span>
-          <div class="tutorial-card-title">Forward the new video</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="8" aria-label="Step 8 of 9">
-        <a class="tutorial-image-link" href="/tutorial/08-choose-status-and-send.png"
-           target="_blank" rel="noopener" aria-label="Open step 8 image full size">
-          <img class="tutorial-image" src="/tutorial/08-choose-status-and-send.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-08.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 8: Select My status on the Forward to screen and tap Send."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 8 of 9</span>
-          <div class="tutorial-card-title">Choose My Status and send</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
-        </div>
-      </li>
-
-      <li class="tutorial-card" data-step="9" aria-label="Step 9 of 9">
-        <a class="tutorial-image-link" href="/tutorial/09-status-posted.png"
-           target="_blank" rel="noopener" aria-label="Open step 9 image full size">
-          <img class="tutorial-image" src="/tutorial/09-status-posted.png"
-               width="793" height="1983" loading="lazy" decoding="async" fetchpriority="low"
+          <img class="viewer__frame" src="/tutorial/step-09.webp" width="793" height="1983" loading="lazy" decoding="async"
                alt="Step 9: The full-HD video is posted successfully to My status."/>
-        </a>
-        <div class="tutorial-card-copy">
-          <span class="tutorial-card-step">Step 9 of 9</span>
-          <div class="tutorial-card-title">Done! Status posted</div>
-          <span class="tutorial-zoom-hint">Tap image to view full size</span>
+          <button class="viewer__tap viewer__tap--prev" id="guidePrev" type="button" aria-label="Previous step" aria-controls="guideViewer"></button>
+          <button class="viewer__tap viewer__tap--next" id="guideNext" type="button" aria-label="Next step" aria-controls="guideViewer"></button>
         </div>
-      </li>
-    </ol>
-  </section>
-
-  <script>
-    (function () {
-      var track = document.getElementById('tutorialTrack');
-      var prev = document.getElementById('tutorialPrev');
-      var next = document.getElementById('tutorialNext');
-      var position = document.getElementById('tutorialPosition');
-      if (!track || !prev || !next || !position) return;
-
-      var cards = Array.prototype.slice.call(track.querySelectorAll('.tutorial-card'));
-      var current = 0;
-      var scrollFrame = null;
-      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function updateControls() {
-        prev.disabled = current <= 0;
-        next.disabled = current >= cards.length - 1;
-        position.textContent = 'Step ' + (current + 1) + ' of ' + cards.length;
-        cards.forEach(function (card, index) {
-          if (index === current) card.setAttribute('aria-current', 'step');
-          else card.removeAttribute('aria-current');
-        });
-      }
-
-      function goTo(index) {
-        current = Math.max(0, Math.min(cards.length - 1, index));
-        var card = cards[current];
-        var left = card.offsetLeft - ((track.clientWidth - card.offsetWidth) / 2);
-        track.scrollTo({ left: Math.max(0, left), behavior: reducedMotion ? 'auto' : 'smooth' });
-        updateControls();
-      }
-
-      function syncToScroll() {
-        scrollFrame = null;
-        var center = track.scrollLeft + (track.clientWidth / 2);
-        var nearest = 0;
-        var distance = Infinity;
-        cards.forEach(function (card, index) {
-          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-          var delta = Math.abs(center - cardCenter);
-          if (delta < distance) {
-            distance = delta;
-            nearest = index;
-          }
-        });
-        if (nearest !== current) {
-          current = nearest;
-          updateControls();
-        }
-      }
-
-      prev.addEventListener('click', function () { goTo(current - 1); });
-      next.addEventListener('click', function () { goTo(current + 1); });
-      track.addEventListener('scroll', function () {
-        if (!scrollFrame) scrollFrame = requestAnimationFrame(syncToScroll);
-      }, { passive: true });
-      track.addEventListener('keydown', function (event) {
-        if (event.key === 'ArrowLeft') {
-          event.preventDefault();
-          goTo(current - 1);
-        } else if (event.key === 'ArrowRight') {
-          event.preventDefault();
-          goTo(current + 1);
-        } else if (event.key === 'Home') {
-          event.preventDefault();
-          goTo(0);
-        } else if (event.key === 'End') {
-          event.preventDefault();
-          goTo(cards.length - 1);
-        }
-      });
-      window.addEventListener('resize', syncToScroll, { passive: true });
-      updateControls();
-    })();
-  </script>
-
-  <!-- STATS BAR -->
-  <div style="background:#F5F0E2;
-              border-top:1px solid #EFF3DE;
-              border-bottom:1px solid #EFF3DE;
-              padding:16px 20px;">
-    <div style="max-width:700px;
-                margin:0 auto;
-                display:flex;
-                justify-content:space-around;
-                align-items:center;
-                flex-wrap:wrap;
-                gap:12px;">
-      <div style="text-align:center;">
-        <div style="font-size:22px;
-                    font-weight:800;
-                    color: var(--orange-deep);">
-          10K+
-        </div>
-        <div style="font-size:11px;color:var(--olive-soft);">
-          Videos Processed
-        </div>
-      </div>
-      <div style="width:1px;height:30px;background:#FFF6EA;"></div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;
-                    font-weight:800;
-                    color: var(--orange-deep);">
-          HD
-        </div>
-        <div style="font-size:11px;color:var(--olive-soft);">
-          Quality Always
-        </div>
-      </div>
-      <div style="width:1px;height:30px;background:#FFF6EA;"></div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;
-                    font-weight:800;
-                    color: var(--orange-deep);">
-          300MB
-        </div>
-        <div style="font-size:11px;color:var(--olive-soft);">
-          Max Upload
-        </div>
-      </div>
-      <div style="width:1px;height:30px;background:#FFF6EA;"></div>
-      <div style="text-align:center;">
-        <div style="font-size:22px;
-                    font-weight:800;
-                    color: var(--orange-deep);">
-          FREE
-        </div>
-        <div style="font-size:11px;color:var(--olive-soft);">
-          Always & Forever
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AdSense integration point: after approval, place one manual responsive
-       ad unit here. Keeping it outside the upload, processing, activation, and
-       posting controls prevents distraction and accidental clicks. Do not add
-       publisher or slot placeholders; use the exact IDs issued by AdSense. -->
-
-  <!-- ✅ FAQ SECTION — boosts SEO with real questions people search -->
-  <div style="max-width:700px;margin:0 auto;padding:0 20px 40px;">
-    <div style="border-top:1px solid #FFF6EA;padding-top:40px;">
-
-      <h2 style="font-size:22px;
-                 font-weight:800;
-                 color:#515739;
-                 margin-bottom:24px;
-                 text-align:center;">
-        ❓ Frequently Asked Questions
-      </h2>
-
-      <!-- Q1 -->
-      <div style="background:#F0E6D6;
-                  border:1px solid #FFF6EA;
-                  border-radius:12px;
-                  padding:20px;
-                  margin-bottom:12px;">
-        <h3 style="font-size:15px;
-                   font-weight:700;
-                   color: var(--orange-deep);
-                   margin-bottom:8px;">
-          Why is my WhatsApp Status video blurry?
-        </h3>
-        <p style="font-size:14px;color:var(--olive-soft);line-height:1.6;">
-          WhatsApp automatically destroys video quality to save bandwidth.
-          StatusDrop pre-compresses your video to the exact specs WhatsApp
-          expects — so it stays HD quality when posted as a Status.
+        <p class="viewer__caption">
+          <span id="guideCaption">Activate on WhatsApp</span>
+          <a class="link" id="guideFull" href="/tutorial/step-01.webp" target="_blank" rel="noopener">Open full size</a>
         </p>
+        <p class="sr-only" id="guideStatus" aria-live="polite" aria-atomic="true"></p>
       </div>
+    </section>
 
-      <!-- Q2 -->
-      <div style="background:#F0E6D6;
-                  border:1px solid #FFF6EA;
-                  border-radius:12px;
-                  padding:20px;
-                  margin-bottom:12px;">
-        <h3 style="font-size:15px;
-                   font-weight:700;
-                   color: var(--orange-deep);
-                   margin-bottom:8px;">
-          How do I upload a long video to WhatsApp Status?
-        </h3>
-        <p style="font-size:14px;color:var(--olive-soft);line-height:1.6;">
-          WhatsApp Status only allows 29-second videos. StatusDrop
-          automatically splits your long video into multiple 29-second
-          clips and sends them all directly to your WhatsApp — completely free!
-        </p>
+    <!-- AdSense integration point: after approval, place one manual responsive
+         ad unit here. Keeping it outside the app, guide and question controls
+         prevents distraction and accidental clicks. Do not add publisher or
+         slot placeholders; use the exact IDs issued by AdSense. -->
+
+    <!-- FAQ (keep these answers in step with the FAQPage schema in <head>) -->
+    <section class="faq" id="faq" aria-labelledby="faqTitle">
+      <h2 id="faqTitle" data-reveal>Frequently asked questions</h2>
+      <div class="faq__stack" data-reveal style="--d:1">
+        <div class="qcard is-open" style="--i:0">
+          <span class="qcard__tab" aria-hidden="true">Blurry video</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ1" aria-expanded="true" aria-controls="faqA1">Why is my WhatsApp Status video blurry?</button></h3>
+            <div class="qcard__panel" id="faqA1" role="region" aria-labelledby="faqQ1"><div>
+              <p>WhatsApp compresses videos to save bandwidth, and that destroys quality. StatusDrop prepares your video to the exact specs WhatsApp expects, so it stays in HD when you post it as a Status.</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="qcard" style="--i:1">
+          <span class="qcard__tab" aria-hidden="true">Long videos</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ2" aria-expanded="false" aria-controls="faqA2">How do I upload a long video to WhatsApp Status?</button></h3>
+            <div class="qcard__panel" id="faqA2" role="region" aria-labelledby="faqQ2"><div>
+              <p>StatusDrop splits a long video into 29-second parts, or 59-second parts in 720p, and sends them all to your WhatsApp for free. Post them in order and they play one after another.</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="qcard" style="--i:2">
+          <span class="qcard__tab" aria-hidden="true">Price</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ3" aria-expanded="false" aria-controls="faqA3">Is StatusDrop really free?</button></h3>
+            <div class="qcard__panel" id="faqA3" role="region" aria-labelledby="faqQ3"><div>
+              <p>Yes, 100% free. No login, no account, no watermark and no hidden fees. Choose up to 3 videos, 300&nbsp;MB in total, and get them back in HD on WhatsApp.</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="qcard" style="--i:3">
+          <span class="qcard__tab" aria-hidden="true">Formats</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ4" aria-expanded="false" aria-controls="faqA4">What video formats are supported?</button></h3>
+            <div class="qcard__panel" id="faqA4" role="region" aria-labelledby="faqQ4"><div>
+              <p>MP4, MOV, AVI, MKV, 3GP and WMV, up to 300&nbsp;MB in total.</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="qcard" style="--i:4">
+          <span class="qcard__tab" aria-hidden="true">Privacy</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ5" aria-expanded="false" aria-controls="faqA5">Is my video private and secure?</button></h3>
+            <div class="qcard__panel" id="faqA5" role="region" aria-labelledby="faqQ5"><div>
+              <p>Yes. Your original video never leaves your phone. Only the finished parts are uploaded, and they are deleted from our servers as soon as they reach your WhatsApp, or within minutes if you never send the code. We never share your videos.</p>
+            </div></div>
+          </div>
+        </div>
+        <div class="qcard" style="--i:5">
+          <span class="qcard__tab" aria-hidden="true">The website</span>
+          <div class="qcard__body">
+            <h3><button class="qcard__btn" type="button" id="faqQ6" aria-expanded="false" aria-controls="faqA6">Where did the website compressor go?</button></h3>
+            <div class="qcard__panel" id="faqA6" role="region" aria-labelledby="faqQ6"><div>
+              <p>It has been retired. Compressing videos on our servers was expensive to run, so the free Android app now does the work on your phone. That keeps StatusDrop free and sustainable.</p>
+            </div></div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Q3 -->
-      <div style="background:#F0E6D6;
-                  border:1px solid #FFF6EA;
-                  border-radius:12px;
-                  padding:20px;
-                  margin-bottom:12px;">
-        <h3 style="font-size:15px;
-                   font-weight:700;
-                   color: var(--orange-deep);
-                   margin-bottom:8px;">
-          Is StatusDrop really free?
-        </h3>
-        <p style="font-size:14px;color:var(--olive-soft);line-height:1.6;">
-          Yes! 100% free. No login, no account, no watermark, no hidden
-          fees. Upload videos up to 300MB and receive them in HD quality
-          directly on WhatsApp.
-        </p>
+    <!-- CLOSING -->
+    <section class="cta on-accent" aria-labelledby="ctaTitle">
+      <div class="cta__copy">
+        <h2 id="ctaTitle" data-reveal>Get the Android app</h2>
+        <p class="cta__lead" data-reveal style="--d:1">Install it from Google Play, pick a video, and the finished parts arrive in your WhatsApp. More than 10,000 videos processed so far.</p>
+        <div class="cta__actions" data-reveal style="--d:2">
+          <a class="btn btn--night" href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop" target="_blank" rel="noopener">Get it on Google Play</a>
+          <a class="link" href="https://ko-fi.com/wastatus" target="_blank" rel="noopener">Support the iOS app launch on Ko-fi</a>
+        </div>
       </div>
-
-      <!-- Q4 -->
-      <div style="background:#F0E6D6;
-                  border:1px solid #FFF6EA;
-                  border-radius:12px;
-                  padding:20px;
-                  margin-bottom:12px;">
-        <h3 style="font-size:15px;
-                   font-weight:700;
-                   color: var(--orange-deep);
-                   margin-bottom:8px;">
-          What video formats are supported?
-        </h3>
-        <p style="font-size:14px;color:var(--olive-soft);line-height:1.6;">
-          StatusDrop supports MP4, MOV, AVI, MKV, 3GP and WMV
-          formats up to 300MB in file size.
-        </p>
-      </div>
-
-      <!-- Q5 -->
-      <div style="background:#F0E6D6;
-                  border:1px solid #FFF6EA;
-                  border-radius:12px;
-                  padding:20px;
-                  margin-bottom:12px;">
-        <h3 style="font-size:15px;
-                   font-weight:700;
-                   color: var(--orange-deep);
-                   margin-bottom:8px;">
-          Is my video private and secure?
-        </h3>
-        <p style="font-size:14px;color:var(--olive-soft);line-height:1.6;">
-          Yes! Your video is automatically deleted from our servers
-          within 5 minutes after being sent to your WhatsApp.
-          We never store or share your videos.
-        </p>
-      </div>
-
-    </div>
-  </div>
+      <figure class="cta__screen" data-reveal style="--d:1">
+        <img src="/img/app/first-screen.webp" width="652" height="1108" loading="lazy" decoding="async"
+             alt="The StatusDrop app’s first screen: Select, Compress and Send, a note that originals never upload, and a Choose videos button."/>
+      </figure>
+    </section>
   </main>
 
-  <footer>
-    <!-- ✅ Wave divider -->
-    <div style="text-align:center;
-                margin-bottom:24px;
-                color:#FFF6EA;
-                font-size:32px;
-                letter-spacing:-2px;">
-      
+  <footer class="footer on-dark">
+    <p class="mark" role="img" aria-label="StatusDrop" translate="no">
+      <span class="mark__word" style="--n:6" aria-hidden="true">
+        <span style="--h:100%;--d:0" data-reveal>S</span><span style="--h:78%;--d:1" data-reveal>t</span><span style="--h:88%;--d:2" data-reveal>a</span><span style="--h:64%;--d:3" data-reveal>t</span><span style="--h:94%;--d:0" data-reveal>u</span><span style="--h:72%;--d:1" data-reveal>s</span>
+      </span>
+      <span class="mark__word" style="--n:4" aria-hidden="true">
+        <span style="--h:100%;--d:2" data-reveal>D</span><span style="--h:68%;--d:3" data-reveal>r</span><span style="--h:86%;--d:0" data-reveal>o</span><span style="--h:76%;--d:1" data-reveal>p</span>
+      </span>
+    </p>
+    <div class="footer__grid">
+      <ul class="footer__col">
+        <li><a class="link" href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop" target="_blank" rel="noopener">Google Play</a></li>
+        <li><a class="link" href="#how-it-works">How it works</a></li>
+        <li><a class="link" href="#posting-guide">Posting guide</a></li>
+        <li><a class="link" href="#faq">FAQ</a></li>
+      </ul>
+      <ul class="footer__col">
+        <li><a class="link" href="https://github.com/Shamanthnp1/WAstatus" target="_blank" rel="noopener">Source on GitHub</a></li>
+        <li><a class="link" href="https://ko-fi.com/wastatus" target="_blank" rel="noopener">Support on Ko-fi</a></li>
+      </ul>
+      <ul class="footer__col">
+        <li><a class="link" href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a class="link" href="mailto:shamanthnadumane@gmail.com">Contact</a></li>
+      </ul>
+      <ul class="footer__col">
+        <li><a class="link" href="/privacy.html">Privacy policy</a></li>
+      </ul>
+      <div class="footer__contact">
+        <p>Built by a solo developer, open to work. <a class="link" href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener">Say hi on Instagram</a>.</p>
+        <p>No account, no watermark. Finished parts are deleted once they reach your WhatsApp.</p>
+      </div>
     </div>
-
-    <div style="max-width:700px;
-                margin:0 auto;
-                padding:0 20px;">
-
-      <!-- Logo in footer -->
-      <div style="display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  gap:10px;
-                  margin-bottom:16px;">
-        <div style="width:32px;height:32px;
-                    border-radius:8px;
-                    overflow:hidden;">
-          <img src="/logo.png"
-               alt="StatusDrop"
-               style="width:100%;
-                      height:100%;
-                      object-fit:contain;"/>
-        </div>
-        <span style="font-size:20px;
-                     font-weight:800;
-                     color:#515739;">
-          WA<span style="color: var(--orange-deep);">Status</span>
-        </span>
-      </div>
-
-      <p style="color:#7C8459;
-                font-size:13px;
-                margin-bottom:16px;
-                line-height:1.6;">
-        Free HD WhatsApp Status videos.<br/>
-        Compress, split & deliver instantly.
-      </p>
-
-      <div class="footer-links"
-           style="margin-bottom:20px;">
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="mailto:shamanthnadumane@gmail.com">Contact</a>
-      </div>
-
-      <!-- ✅ Trust badges -->
-      <div style="display:flex;
-                  gap:8px;
-                  justify-content:center;
-                  flex-wrap:wrap;
-                  margin-bottom:20px;">
-        <span style="background:#F5F0E2;
-                     border:1px solid #EFF3DE;
-                     color:#7C8459;
-                     padding:4px 12px;
-                     border-radius:20px;
-                     font-size:11px;">
-          🔒 No Account Needed
-        </span>
-        <span style="background:#F5F0E2;
-                     border:1px solid #EFF3DE;
-                     color:#7C8459;
-                     padding:4px 12px;
-                     border-radius:20px;
-                     font-size:11px;">
-          🗑️ Auto Deleted in 5 mins
-        </span>
-        <span style="background:#F5F0E2;
-                     border:1px solid #EFF3DE;
-                     color:#7C8459;
-                     padding:4px 12px;
-                     border-radius:20px;
-                     font-size:11px;">
-          📵 No Watermark
-        </span>
-      </div>
-
-      <p style="color:var(--olive-soft);font-size:12px;margin-bottom:8px;">
-        Built by a solo developer · open to work — <a href="https://ig.me/m/xd.sapphire" target="_blank" rel="noopener" style="color: var(--orange-deep);text-decoration:none;font-weight:600;">say hi on Instagram</a>
-      </p>
-      <p style="color:#E4D9C4;font-size:12px;">
-        © 2026 StatusDrop · Made with 💚
-      </p>
+    <div class="footer__base">
+      <p>&copy; 2026 StatusDrop. Not affiliated with WhatsApp or Meta.</p>
+      <a class="btn btn--mint btn--small" href="https://play.google.com/store/apps/details?id=com.wastatusvideo.statusdrop" target="_blank" rel="noopener">Get it on Google Play</a>
     </div>
   </footer>
 
   <script>
   (function () {
     'use strict';
-    // Logo images sit next to the visible "StatusDrop" name, so they are decorative.
-    document.querySelectorAll('img[alt="StatusDrop"]').forEach(function (img) { img.alt = ''; });
 
-    // Keep only the current tutorial card's image link in the Tab order.
-    var tutorialLinks = [].slice.call(document.querySelectorAll('.tutorial-image-link'));
-    function syncTutorialTabs() {
-      var current = document.querySelector('.tutorial-card[aria-current="step"]');
-      tutorialLinks.forEach(function (a) {
-        a.tabIndex = a.closest('.tutorial-card') === current ? 0 : -1;
+    // Parts calculator. Same rule as the app: ceil(length / part length), at most 20 parts per delivery.
+    var range = document.getElementById('calcLength');
+    if (range) {
+      var lengthOut = document.getElementById('calcLengthOut');
+      var partsOut = document.getElementById('calcParts');
+      var unitOut = document.getElementById('calcUnit');
+      var howOut = document.getElementById('calcHow');
+      var segments = document.getElementById('calcSegments');
+      var status = document.getElementById('calcStatus');
+      var MAX_PARTS = 20;
+      var announceTimer = null;
+
+      var short = function (s) {
+        var m = Math.floor(s / 60), r = s % 60;
+        if (!m) return r + '\u00a0s';
+        return r ? m + '\u00a0min ' + r + '\u00a0s' : m + '\u00a0min';
+      };
+      var spoken = function (s) {
+        var m = Math.floor(s / 60), r = s % 60, out = [];
+        if (m) out.push(m + (m === 1 ? ' minute' : ' minutes'));
+        if (r || !m) out.push(r + (r === 1 ? ' second' : ' seconds'));
+        return out.join(' ');
+      };
+      var render = function (announce) {
+        var total = Number(range.value);
+        var picked = document.querySelector('input[name="calcProfile"]:checked');
+        var partSeconds = picked && picked.value === 'long59' ? 59 : 29;
+        var parts = Math.ceil(total / partSeconds);
+
+        lengthOut.textContent = short(total);
+        range.setAttribute('aria-valuetext', spoken(total));
+        partsOut.textContent = parts;
+        unitOut.textContent = parts === 1 ? 'part' : 'parts';
+        howOut.textContent = parts > MAX_PARTS
+          ? 'That is more than the 20 parts one delivery can hold. Trim the video, or choose 720p for 59-second parts.'
+          : "Your video’s length divided by " + partSeconds + ' seconds, rounded up. Each part stays under 16\u00a0MB, and one delivery holds up to 20 parts.';
+
+        var list = document.createDocumentFragment();
+        for (var i = 0; i < parts; i++) {
+          var li = document.createElement('li');
+          li.style.setProperty('--w', Math.min(partSeconds, total - i * partSeconds));
+          li.style.setProperty('--i', i);
+          if (i >= MAX_PARTS) li.className = 'is-over';
+          list.appendChild(li);
+        }
+        segments.replaceChildren(list);
+
+        if (announce) {
+          clearTimeout(announceTimer);
+          announceTimer = setTimeout(function () {
+            status.textContent = spoken(total) + ': ' + parts + ' ' + (parts === 1 ? 'part' : 'parts') +
+              (parts > MAX_PARTS ? ', more than one delivery can hold.' : '.');
+          }, 500);
+        }
+      };
+      range.addEventListener('input', function () { render(true); });
+      document.querySelectorAll('input[name="calcProfile"]').forEach(function (r) {
+        r.addEventListener('change', function () { render(true); });
       });
+      render(false);
     }
-    syncTutorialTabs();
-    var track = document.getElementById('tutorialTrack');
-    if (track) track.addEventListener('scroll', function () { setTimeout(syncTutorialTabs, 100); }, { passive: true });
+
+    // Posting guide: one Status frame. Tap the right side for the next step, the left side to go back.
+    var viewer = document.getElementById('guideViewer');
+    if (viewer) {
+      var frames = [].slice.call(viewer.querySelectorAll('.viewer__frame'));
+      var bars = [].slice.call(viewer.querySelectorAll('.viewer__bars span'));
+      var steps = [].slice.call(document.querySelectorAll('#guideSteps a'));
+      var caption = document.getElementById('guideCaption');
+      var full = document.getElementById('guideFull');
+      var guideStatus = document.getElementById('guideStatus');
+      var prev = document.getElementById('guidePrev');
+      var next = document.getElementById('guideNext');
+      var current = 0;
+
+      var show = function (index, announce) {
+        current = Math.max(0, Math.min(frames.length - 1, index));
+        frames.forEach(function (f, k) {
+          f.classList.toggle('is-current', k === current);
+          if (k === current) { f.removeAttribute('aria-hidden'); f.loading = 'eager'; }
+          else f.setAttribute('aria-hidden', 'true');
+        });
+        if (frames[current + 1]) frames[current + 1].loading = 'eager';
+        bars.forEach(function (b, k) {
+          b.classList.toggle('is-done', k < current);
+          b.classList.toggle('is-current', k === current);
+        });
+        steps.forEach(function (a, k) {
+          if (k === current) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
+        });
+        caption.textContent = steps[current].textContent;
+        full.href = steps[current].getAttribute('href');
+        prev.setAttribute('aria-disabled', String(current === 0));
+        next.setAttribute('aria-disabled', String(current === frames.length - 1));
+        if (announce) guideStatus.textContent = 'Step ' + (current + 1) + ' of ' + frames.length + ': ' + caption.textContent;
+      };
+
+      prev.addEventListener('click', function () { show(current - 1, true); });
+      next.addEventListener('click', function () { show(current + 1, true); });
+      steps.forEach(function (a, k) {
+        a.setAttribute('aria-controls', 'guideViewer');
+        a.addEventListener('click', function (e) { e.preventDefault(); show(k, true); });
+      });
+      viewer.addEventListener('keydown', function (e) {
+        var keys = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: frames.length - 1 };
+        if (e.key in keys) { e.preventDefault(); show(keys[e.key], true); }
+      });
+      show(0, false);
+    }
+
+    // FAQ: one card open at a time.
+    var cardButtons = [].slice.call(document.querySelectorAll('.qcard__btn'));
+    cardButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var wasOpen = btn.getAttribute('aria-expanded') === 'true';
+        cardButtons.forEach(function (b) {
+          b.setAttribute('aria-expanded', 'false');
+          b.closest('.qcard').classList.remove('is-open');
+        });
+        if (!wasOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.closest('.qcard').classList.add('is-open');
+        }
+      });
+    });
+
+    // Entrances: each part rises once as its section comes into view.
+    var revealed = document.querySelectorAll('[data-reveal]');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
+      revealed.forEach(function (el) { io.observe(el); });
+    } else {
+      revealed.forEach(function (el) { el.classList.add('is-in'); });
+    }
   })();
   </script>
 </body>
