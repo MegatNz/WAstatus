@@ -1,0 +1,53 @@
+name: Build iOS IPA
+
+on:
+  workflow_dispatch: # Allows you to trigger the build with 1 click
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.38.1'
+          channel: 'stable'
+
+      - name: Generate iOS scaffolding
+        run: |
+          cd mobile/statusdrop_app
+          flutter create --platforms=ios .
+
+      - name: Add FFmpegKit to Podfile
+        run: |
+          cd mobile/statusdrop_app/ios
+          cat << 'EOF' > Podfile
+          platform :ios, '14.0'
+          use_frameworks!
+          target 'Runner' do
+            flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+            pod 'ffmpeg-kit-ios-full', '~> 6.0'
+          end
+          EOF
+          pod install
+
+      - name: Build Unsigned iOS Archive
+        run: |
+          cd mobile/statusdrop_app
+          flutter build ios --release --no-codesign
+
+      - name: Package IPA
+        run: |
+          cd mobile/statusdrop_app/build/ios/iphoneos
+          mkdir Payload
+          cp -r Runner.app Payload/
+          zip -r StatusDrop.ipa Payload
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: StatusDrop-iOS-IPA
+          path: mobile/statusdrop_app/build/ios/iphoneos/StatusDrop.ipa
