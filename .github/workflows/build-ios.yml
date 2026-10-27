@@ -1,7 +1,7 @@
 name: Build iOS IPA
 
 on:
-  workflow_dispatch: # Allows you to trigger the build with 1 click
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,20 +19,309 @@ jobs:
       - name: Generate iOS scaffolding
         run: |
           cd mobile/statusdrop_app
-          flutter create --platforms=ios .
+          flutter create --platforms=ios --org com.wastatusvideo .
 
-      - name: Add FFmpegKit to Podfile
+      - name: Inject Native iOS Video Processor (AppDelegate.swift)
         run: |
-          cd mobile/statusdrop_app/ios
-          cat << 'EOF' > Podfile
-          platform :ios, '14.0'
-          use_frameworks!
-          target 'Runner' do
-            flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-            pod 'ffmpeg-kit-ios-full', '~> 6.0'
-          end
+          cat << 'EOF' > mobile/statusdrop_app/ios/Runner/AppDelegate.swift
+          import UIKit
+          import Flutter
+          import PhotosUI
+          import AVFoundation
+          import CryptoKit
+
+          @main
+          @objc class AppDelegate: FlutterAppDelegate, PHPickerViewControllerDelegate, FlutterStreamHandler {
+              
+              private let methodChannelName = "com.wastatusvideo.statusdrop/video"
+              private let eventChannelName = "com.wastatusvideo.statusdrop/video_events"
+              
+              private var eventSink: FlutterEventSink?
+              private var pendingPickerResult: FlutterResult?
+              private var processedClips: [[String: Any]] = []
+              private var isCancelled = false
+              private var currentExportSession: AVAssetExportSession?
+
+              override func application(
+                  _ application: UIApplication,
+                  didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+              ) -> Bool {
+                  let controller = window?.rootViewController as! FlutterViewController
+                  
+                  let methodChannel = FlutterMethodChannel(name: methodChannelName, binaryMessenger: controller.binaryMessenger)
+                  let eventChannel = FlutterEventChannel(name: eventChannelName, binaryMessenger: controller.binaryMessenger)
+                  
+                  eventChannel.setStreamHandler(self)
+                  
+                  methodChannel.setMethodCallHandler { [weak self] (call: FlutterMethodCall, result: @escaping FlutterResult) in
+                      guard let self = self else { return }
+                      
+                      switch call.method {
+                      case "platformReady":
+                          result(true)
+                          
+                      case "pickVideos":
+                          let args = call.arguments as? [String: Any]
+                          let maxFiles = args?["maxFiles"] as? Int ?? 3
+                          self.pickVideos(maxFiles: maxFiles, result: result)
+                          
+                      case "startProcessing":
+                          guard let args = call.arguments as? [String: Any],
+                                let rawVideos = args["videos"] as? [[String: Any]],
+                                let profileId = args["profile"] as? String else {
+                              result(FlutterError(code: "INVALID_ARGS", message: "Missing arguments", details: nil))
+                              return
+                          }
+                          self.startProcessing(rawVideos: rawVideos, profileId: profileId, result: result)
+                          
+                      case "getProcessedClips":
+                          result(self.processedClips)
+                          
+                      case "cancelProcessing":
+                          self.isCancelled = true
+                          self.currentExportSession?.cancelExport()
+                          result(nil)
+                          
+                      case "clearProcessedClips":
+                          self.processedClips.removeAll()
+                          result(nil)
+                          
+                      case "deleteCachedFile":
+                          if let args = call.arguments as? [String: Any],
+                             let path = args["path"] as? String {
+                              try? FileManager.default.removeItem(atPath: path)
+                          }
+                          result(nil)
+                          
+                      case "openExternalUrl":
+                          if let args = call.arguments as? [String: Any],
+                             let urlStr = args["url"] as? String,
+                             let url = URL(string: urlStr) {
+                              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                          }
+                          result(nil)
+                          
+                      case "clearCache":
+                          self.clearAppCache()
+                          result(nil)
+                          
+                      default:
+                          result(FlutterMethodNotImplemented)
+                      }
+                  }
+
+                  GeneratedPluginRegistrant.register(with: self)
+                  return super.application(application, didFinishLaunchingWithOptions: launchOptions)
+              }
+
+              // MARK: - Stream Handler
+              func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+                  self.eventSink = events
+                  return nil
+              }
+
+              func onCancel(withArguments arguments: Any?) -> FlutterError? {
+                  self.eventSink = nil
+                  return nil
+              }
+
+              // MARK: - Video Picking
+              private func pickVideos(maxFiles: Int, result: @escaping FlutterResult) {
+                  self.pendingPickerResult = result
+                  
+                  var config = PHPickerConfiguration()
+                  config.selectionLimit = maxFiles
+                  config.filter = .videos
+                  
+                  let picker = PHPickerViewController(configuration: config)
+                  picker.delegate = self
+                  
+                  window?.rootViewController?.present(picker, animated: true, completion: nil)
+              }
+
+              func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+                  picker.dismiss(animated: true, completion: nil)
+                  
+                  guard let result = pendingPickerResult else { return }
+                  pendingPickerResult = nil
+                  
+                  if results.isEmpty {
+                      result([])
+                      return
+                  }
+
+                  let group = DispatchGroup()
+                  var pickedVideos: [[String: Any]] = []
+                  let tempDir = FileManager.default.temporaryDirectory
+
+                  for item in results {
+                      group.enter()
+                      item.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { (url, error) in
+                          defer { group.leave() }
+                          guard let url = url, error == nil else { return }
+                          
+                          let uniqueId = UUID().uuidString
+                          let targetUrl = tempDir.appendingPathComponent("\(uniqueId).mp4")
+                          try? FileManager.default.copyItem(at: url, to: targetUrl)
+                          
+                          let asset = AVURLAsset(url: targetUrl)
+                          let durationSec = CMTimeGetSeconds(asset.duration)
+                          let attributes = try? FileManager.default.attributesOfItem(atPath: targetUrl.path)
+                          let sizeBytes = attributes?[.size] as? Int64 ?? 0
+                          
+                          var width = 0
+                          var height = 0
+                          if let track = asset.tracks(withMediaType: .video).first {
+                              let size = track.naturalSize.applying(track.preferredTransform)
+                              width = Int(abs(size.width))
+                              height = Int(abs(size.height))
+                          }
+                          
+                          pickedVideos.append([
+                              "id": uniqueId,
+                              "path": targetUrl.path,
+                              "name": url.lastPathComponent,
+                              "sizeBytes": sizeBytes,
+                              "durationSeconds": durationSec,
+                              "width": width,
+                              "height": height
+                          ])
+                      }
+                  }
+
+                  group.notify(queue: .main) {
+                      result(pickedVideos)
+                  }
+              }
+
+              // MARK: - Native Processing
+              private func startProcessing(rawVideos: [[String: Any]], profileId: String, result: @escaping FlutterResult) {
+                  self.isCancelled = false
+                  self.processedClips.removeAll()
+                  result(nil)
+                  
+                  DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                      guard let self = self else { return }
+                      
+                      let is1080p = (profileId == "1080p")
+                      let segmentSeconds = is1080p ? 29.0 : 59.0
+                      let presetName = is1080p ? AVAssetExportPreset1920x1080 : AVAssetExportPreset1280x720
+                      
+                      var generatedClips: [[String: Any]] = []
+                      let cacheDir = FileManager.default.temporaryDirectory
+                      
+                      var clipPlans: [(path: String, start: Double, duration: Double)] = []
+                      for video in rawVideos {
+                          guard let inputPath = video["path"] as? String else { continue }
+                          let asset = AVURLAsset(url: URL(fileURLWithPath: inputPath))
+                          let totalDuration = CMTimeGetSeconds(asset.duration)
+                          let count = max(1, Int(ceil(totalDuration / segmentSeconds)))
+                          for partIndex in 0..<count {
+                              let start = Double(partIndex) * segmentSeconds
+                              let remaining = totalDuration - start
+                              if remaining > 0.05 {
+                                  clipPlans.append((path: inputPath, start: start, duration: min(segmentSeconds, remaining)))
+                              }
+                          }
+                      }
+                      
+                      let totalClips = clipPlans.count
+                      
+                      DispatchQueue.main.async {
+                          self.eventSink?([
+                              "type": "started",
+                              "message": "Starting compression...",
+                              "progress": 0.0,
+                              "currentClip": 0,
+                              "totalClips": totalClips
+                          ])
+                      }
+                      
+                      for (index, plan) in clipPlans.enumerated() {
+                          if self.isCancelled { break }
+                          let order = index + 1
+                          let outputFilename = String(format: "%03d_clip.mp4", order)
+                          let outputUrl = cacheDir.appendingPathComponent(outputFilename)
+                          try? FileManager.default.removeItem(at: outputUrl)
+                          
+                          let asset = AVURLAsset(url: URL(fileURLWithPath: plan.path))
+                          guard let exportSession = AVAssetExportSession(asset: asset, presetName: presetName) else { continue }
+                          self.currentExportSession = exportSession
+                          exportSession.outputURL = outputUrl
+                          exportSession.outputFileType = .mp4
+                          exportSession.shouldOptimizeForNetworkUse = true
+                          exportSession.timeRange = CMTimeRange(
+                              start: CMTime(seconds: plan.start, preferredTimescale: 600),
+                              duration: CMTime(seconds: plan.duration, preferredTimescale: 600)
+                          )
+                          
+                          let semaphore = DispatchSemaphore(value: 0)
+                          exportSession.exportAsynchronously {
+                              semaphore.signal()
+                          }
+                          semaphore.wait()
+                          
+                          if exportSession.status == .completed {
+                              let attrs = try? FileManager.default.attributesOfItem(atPath: outputUrl.path)
+                              let sizeBytes = attrs?[.size] as? Int64 ?? 0
+                              let sha = self.calculateSha256(for: outputUrl)
+                              
+                              let clipData: [String: Any] = [
+                                  "order": order,
+                                  "path": outputUrl.path,
+                                  "name": outputFilename,
+                                  "sizeBytes": sizeBytes,
+                                  "durationSeconds": plan.duration,
+                                  "sha256": sha
+                              ]
+                              generatedClips.append(clipData)
+                              
+                              let progress = Double(order) / Double(totalClips)
+                              DispatchQueue.main.async {
+                                  self.eventSink?([
+                                      "type": "progress",
+                                      "message": "Clip \(order) of \(totalClips) ready.",
+                                      "progress": progress,
+                                      "currentClip": order,
+                                      "totalClips": totalClips
+                                  ])
+                              }
+                          }
+                      }
+                      
+                      self.processedClips = generatedClips
+                      DispatchQueue.main.async {
+                          if self.isCancelled {
+                              self.eventSink?(["type": "cancelled", "message": "Cancelled."])
+                          } else {
+                              self.eventSink?([
+                                  "type": "completed",
+                                  "message": "All clips ready.",
+                                  "progress": 1.0,
+                                  "currentClip": totalClips,
+                                  "totalClips": totalClips
+                              ])
+                          }
+                      }
+                  }
+              }
+
+              private func calculateSha256(for fileUrl: URL) -> String {
+                  guard let data = try? Data(contentsOf: fileUrl) else { return "" }
+                  let digest = SHA256.hash(data: data)
+                  return digest.map { String(format: "%02x", $0) }.joined()
+              }
+
+              private func clearAppCache() {
+                  let tempDir = FileManager.default.temporaryDirectory
+                  if let files = try? FileManager.default.contentsOfDirectory(atPath: tempDir.path) {
+                      for file in files {
+                          try? FileManager.default.removeItem(at: tempDir.appendingPathComponent(file))
+                      }
+                  }
+              }
+          }
           EOF
-          pod install
 
       - name: Build Unsigned iOS Archive
         run: |
