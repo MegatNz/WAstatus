@@ -20,6 +20,13 @@ jobs:
         run: |
           cd mobile/statusdrop_app
           flutter create --platforms=ios --org com.wastatusvideo .
+          # Bump deployment target to iOS 15.0 for PHPickerViewController support
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = [0-9.]*;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g' ios/Runner.xcodeproj/project.pbxproj
+
+      - name: Add Permissions to Info.plist
+        run: |
+          cd mobile/statusdrop_app/ios/Runner
+          /usr/libexec/PlistBuddy -c "Add :NSPhotoLibraryUsageDescription string 'StatusDrop requires access to your photo library to pick videos for WhatsApp Status.'" Info.plist || true
 
       - name: Inject Native iOS Video Processor (AppDelegate.swift)
         run: |
@@ -29,6 +36,7 @@ jobs:
           import PhotosUI
           import AVFoundation
           import CryptoKit
+          import UniformTypeIdentifiers
 
           @main
           @objc class AppDelegate: FlutterAppDelegate, PHPickerViewControllerDelegate, FlutterStreamHandler {
@@ -41,6 +49,7 @@ jobs:
               private var processedClips: [[String: Any]] = []
               private var isCancelled = false
               private var currentExportSession: AVAssetExportSession?
+              private let lock = NSLock()
 
               override func application(
                   _ application: UIApplication,
@@ -114,7 +123,7 @@ jobs:
                   return super.application(application, didFinishLaunchingWithOptions: launchOptions)
               }
 
-              // MARK: - Stream Handler
+              // MARK: - FlutterStreamHandler
               func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
                   self.eventSink = events
                   return nil
@@ -125,7 +134,7 @@ jobs:
                   return nil
               }
 
-              // MARK: - Video Picking
+              // MARK: - Video Picking via PHPickerViewController
               private func pickVideos(maxFiles: Int, result: @escaping FlutterResult) {
                   self.pendingPickerResult = result
                   
@@ -156,9 +165,9 @@ jobs:
 
                   for item in results {
                       group.enter()
-                      item.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { (url, error) in
+                      item.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] (url, error) in
                           defer { group.leave() }
-                          guard let url = url, error == nil else { return }
+                          guard let self = self, let url = url, error == nil else { return }
                           
                           let uniqueId = UUID().uuidString
                           let targetUrl = tempDir.appendingPathComponent("\(uniqueId).mp4")
@@ -177,6 +186,7 @@ jobs:
                               height = Int(abs(size.height))
                           }
                           
+                          self.lock.lock()
                           pickedVideos.append([
                               "id": uniqueId,
                               "path": targetUrl.path,
@@ -186,6 +196,7 @@ jobs:
                               "width": width,
                               "height": height
                           ])
+                          self.lock.unlock()
                       }
                   }
 
@@ -331,7 +342,7 @@ jobs:
       - name: Package IPA
         run: |
           cd mobile/statusdrop_app/build/ios/iphoneos
-          mkdir Payload
+          mkdir -p Payload
           cp -r Runner.app Payload/
           zip -r StatusDrop.ipa Payload
 
